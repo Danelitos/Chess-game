@@ -1,0 +1,16 @@
+package org.pmoo.packlaboratorio6;
+
+public class ComplementoCargo extends Complementos {
+	//Atributos
+	private String descripcion;
+	
+	//Constructora
+	public ComplementoCargo(String pDescripcion, double pImporteBruto) {
+		super(pImporteBruto, 20);
+		this.descripcion=pDescripcion;
+	}
+	
+	public double calcularCantidad() {
+		return super.calcularCantidad();
+	}
+}

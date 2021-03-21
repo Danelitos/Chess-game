@@ -1,0 +1,14 @@
+package org.pmoo.packlaboratorio6;
+
+public class ComplementoDestino extends Complementos {
+	//Atributos
+	private String ciudad;
+	private String sucursal;
+	
+	//Constructora
+	public ComplementoDestino(String pCiudad, String pSucursal, double pImporteBruto) {
+		super(pImporteBruto, 50);
+		this.ciudad=pCiudad;
+		this.sucursal=pSucursal;
+	}
+}

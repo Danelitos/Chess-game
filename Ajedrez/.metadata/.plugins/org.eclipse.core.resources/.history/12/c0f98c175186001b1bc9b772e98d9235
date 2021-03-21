@@ -1,0 +1,31 @@
+package org.pmoo.packlaboratorio6;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ListaEmpleados {
+	//Atributos
+	private ArrayList<Empleado> lista;
+	
+	//Constructor
+	public ListaEmpleados() {
+		this.lista=new ArrayList<Empleado>();
+	}
+	
+	//Metodos
+	public Iterator getIterator() {
+		return lista.iterator();
+	}
+	
+	public Empleado buscarEmpleado(int pIdentificador) {
+		Empleado e1;
+		Iterator<Empleado> itr=this.getIterator();
+		while (itr.hasNext()) {
+			e1=itr.next();
+			if(e1.tieneMismoIdentificador(pIdentificador)) {
+				return e1;
+			}
+		}
+		return null;
+	}
+}

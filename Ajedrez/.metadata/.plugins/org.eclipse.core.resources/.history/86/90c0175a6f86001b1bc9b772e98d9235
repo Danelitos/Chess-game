@@ -1,0 +1,38 @@
+package org.pmoo.packlaboratorio6;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ListaEmpleados {
+	//Atributos
+	private ArrayList<Empleado> lista;
+	
+	//Constructor
+	public ListaEmpleados() {
+		this.lista=new ArrayList<Empleado>();
+	}
+	
+	//Metodos
+	public Iterator<Empleado> getIterator() {
+		return lista.iterator();
+	}
+	
+	public double obtenerDiferenciaMaxima() {
+		Empleado e1;
+		double SalarioMax=0;
+		double SalarioMin=0;
+		Iterator<Empleado> itr=this.getIterator();
+		while (itr.hasNext()) {
+			e1=itr.next();
+			double SalarioEmpleado=e1.calcularSalario();
+			if (SalarioEmpleado>SalarioMax) {
+				SalarioMax=SalarioEmpleado;
+			}
+			else if (SalarioEmpleado<SalarioMin || SalarioMin==0) {
+				SalarioMin=SalarioEmpleado;
+			}
+			
+		}
+		return SalarioMax-SalarioMin;
+	}
+}

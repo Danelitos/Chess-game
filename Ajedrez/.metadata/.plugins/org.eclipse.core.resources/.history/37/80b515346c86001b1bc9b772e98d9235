@@ -1,0 +1,11 @@
+package org.pmoo.packlaboratorio6;
+
+public class SueldoBase extends Concepto {
+	//Atributos
+	private int identificador;
+	
+	//Constructora
+	public SueldoBase(int pIdentificador) {
+		this.identificador=pIdentificador;
+	}
+}

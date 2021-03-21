@@ -1,0 +1,17 @@
+package org.pmoo.packlaboratorio6;
+
+public class Main {
+	public static void main(String[] args) {
+		Empleado e1= new Empleado("Adrian","Piesdeplata" , 123);
+		Empleado e2= new Empleado("Sergio","Piesdechapa" , 321);
+		ListaEmpleados l1= new ListaEmpleados();
+		Concepto c1= new ConceptosLibres(28,5000);
+		Concepto c2= new ComplementoAntiguedad(5,2000);
+		e1.añadirConcepto(c1);
+		e1.añadirConcepto(c2);
+		l1.añadirEmpleado(e1);
+		l1.añadirEmpleado(e2);
+		Empresa.getMiEmpresa().obtenerDiferenciaMaxima();
+		System.out.println(Empresa.getMiEmpresa().obtenerDiferenciaMaxima());
+	}
+}

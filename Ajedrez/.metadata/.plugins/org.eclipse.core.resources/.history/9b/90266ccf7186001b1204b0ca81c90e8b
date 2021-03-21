@@ -1,0 +1,17 @@
+package org.pmoo.packlaboratorio6;
+
+public class Complementos extends ConceptosRetencion {
+	//Atributos 
+	protected double impuesto;
+	
+	//Constructora
+	public Complementos(double pImpuesto, double pImporteBruto) {
+		super(pImporteBruto);
+		this.impuesto=pImpuesto;
+	}
+	
+	//Meotodos
+	public double calcularCantidad() {
+		return (super.importeBruto-impuesto);
+	}
+}

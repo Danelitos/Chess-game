@@ -1,0 +1,17 @@
+package org.pmoo.packlaboratorio6;
+
+public class ComplementoAntiguedad extends Complementos {
+	//Atributos
+	private int años;
+	
+	//Constructora
+	public ComplementoAntiguedad(int pAños, double pImporteBruto) {
+		super(pImporteBruto, 10);
+		this.años=pAños;
+	}
+	
+	//Metodos
+	public double calcularCantidad() {
+		return (super.calcularCantidad())*(this.años/10);
+	}
+}

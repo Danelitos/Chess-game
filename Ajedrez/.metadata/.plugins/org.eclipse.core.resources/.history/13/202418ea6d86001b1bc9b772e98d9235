@@ -1,0 +1,16 @@
+package org.pmoo.packlaboratorio6;
+
+public class Concepto {
+	//Atributos
+	protected double importeBruto;
+	
+	//Constructora
+	public Concepto(double pImporteBruto) {
+		this.importeBruto=pImporteBruto;
+	}
+	
+	//Metodos
+	public double calcularCantidad() {
+		return this.importeBruto;
+	}
+}

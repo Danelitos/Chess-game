@@ -1,0 +1,41 @@
+package org.pmoo.packlaboratorio6;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Empleado {
+	//Atributos
+	private String nombre;
+	private String apellido;
+	private int identificador;
+	private ArrayList<Concepto> lista;
+	
+	//Constructora
+	public Empleado(String pNombre, String pApellido, int pIdentificador) {
+		this.nombre=pNombre;
+		this.apellido=pApellido;
+		this.identificador=pIdentificador;
+		this.lista=new ArrayList<Concepto>();
+	}
+	
+	//Metodos
+	private Iterator<Concepto> getIterator(){
+		return lista.iterator();
+	}
+	
+	public double calcularSalario() {
+		Concepto c1;
+		double total=0.0;
+		Iterator<Concepto> itr=this.getIterator();
+		while(itr.hasNext()) {
+			c1=itr.next();
+			total=total + c1.calcularCantidad();
+			
+		}
+		return total;
+	}
+	
+	public void añadirConcepto(Concepto c1) {
+		lista.add(c1);
+	}
+}

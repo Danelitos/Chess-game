@@ -1,0 +1,22 @@
+package org.pmoo.packlaboratorio6;
+
+public class Empleado {
+	//Atributos
+	private String nombre;
+	private String apellido;
+	private int identificador;
+	private int importeBruto;
+	
+	//Constructora
+	public Empleado(String pNombre, String pApellido, int pIdentificador, int pImporteBruto) {
+		this.nombre=pNombre;
+		this.apellido=pApellido;
+		this.identificador=pIdentificador;
+		this.importeBruto=pImporteBruto;
+	}
+	
+	//Metodos		
+	public boolean tieneMismoIdentificador(int pIdentificador) {
+		return this.identificador==pIdentificador;
+	}
+}

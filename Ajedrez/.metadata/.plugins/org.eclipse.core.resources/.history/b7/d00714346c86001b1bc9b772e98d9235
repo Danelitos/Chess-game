@@ -1,0 +1,18 @@
+package org.pmoo.packlaboratorio6;
+
+public class Extras extends Concepto {
+	//Atibutos
+	private int horasExtrardinarias;
+	private float precioPorHora;
+	
+	//Constructora
+	public Extras(int pHorasExtraordinarias, int pPrecioPorHoras) {
+		this.horasExtrardinarias=pHorasExtraordinarias;
+		this.precioPorHora=precioPorHora;
+	}
+	
+	//Metodos
+	public double calcularCantidad() {
+		return super.importeBruto*0.90+(this.horasExtrardinarias*this.precioPorHora);
+	}
+}

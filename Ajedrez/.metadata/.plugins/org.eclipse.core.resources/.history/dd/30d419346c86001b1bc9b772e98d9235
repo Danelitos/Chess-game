@@ -1,0 +1,14 @@
+package org.pmoo.packlaboratorio6;
+
+public class ConceptosRetencion extends Concepto {
+	//Atributos
+	
+	//Constructor
+	public ConceptosRetencion() {
+	
+	}
+	//Metodos
+	public double calcularCantidad() {
+		return super.importeBruto*0.95;
+	}
+}

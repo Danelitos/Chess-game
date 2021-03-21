@@ -1,0 +1,16 @@
+package org.pmoo.packlaboratorio6;
+
+public class Complementos extends Concepto {
+	//Atributos 
+	protected int impuesto;
+	
+	//Constructora
+	public Complementos(int pImpuesto) {
+		this.impuesto=pImpuesto;
+	}
+	
+	//Meotodos
+	public double calcularCantidad() {
+		return super.importeBruto;
+	}
+}

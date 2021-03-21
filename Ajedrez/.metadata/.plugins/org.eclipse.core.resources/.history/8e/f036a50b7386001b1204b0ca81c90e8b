@@ -1,0 +1,26 @@
+package org.pmoo.packlaboratorio6;
+
+public class Empresa {
+	//Atributos
+	private static Empresa miEmpresa;
+	private ListaEmpleados lista;
+	
+	//Constructora
+	private Empresa() {
+		this.lista= new ListaEmpleados();
+	}
+	
+	//Metodos
+	public static Empresa getMiEmpresa() {
+		if(Empresa.miEmpresa==null) {
+			Empresa.miEmpresa= new Empresa();
+		}
+		return Empresa.miEmpresa;
+	}
+	
+	public double obtenerDiferenciaMaxima() {
+		return lista.obtenerDiferenciaMaxima();
+	}
+	
+	
+}

@@ -1,0 +1,6 @@
+package org.pmoo.packlaboratorio6;
+
+public class ComplementoCargo {
+	//Atributos
+	private String descripcion;
+}

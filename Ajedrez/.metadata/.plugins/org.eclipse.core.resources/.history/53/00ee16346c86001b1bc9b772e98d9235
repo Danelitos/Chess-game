@@ -1,0 +1,15 @@
+package org.pmoo.packlaboratorio6;
+
+public class ConceptosLibres extends Concepto {
+	//Atributos
+	private int horasInvertidas;
+	
+	//Constructora
+	public ConceptosLibres(int pHorasInvertidas) {
+		this.horasInvertidas=pHorasInvertidas;
+	}
+	//Metodos
+	public double calcularCantidad() {
+		return super.importeBruto*horasInvertidas;
+	}
+}
