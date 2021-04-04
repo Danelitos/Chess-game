@@ -75,8 +75,12 @@ public class Ajedrez {
 			jugadorTurno=jugadorNegra;
 		}
 		System.out.println(jugadorTurno.getNombre() + " te toca mover");
-		miTablero.imprimirTableroConNumeros(jugadorTurno);
-		miTablero.seleccionarMovimiento();
+		boolean haMovido=false;
+		while(!haMovido) {
+			miTablero.imprimirTableroConNumeros(jugadorTurno);
+			haMovido=miTablero.seleccionarMovimiento();	
+		}
+		
 		
 	}
 }

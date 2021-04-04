@@ -41,5 +41,10 @@ public class Pieza {
 	public void resetearNumeroPieza() {
 		this.numeroPieza=-2;
 	}
+	
+	public boolean puedeComer(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
+			Casilla casillaDestino) {
+		return false;
+	}
 
 }

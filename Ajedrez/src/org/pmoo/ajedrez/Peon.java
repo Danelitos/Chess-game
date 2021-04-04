@@ -16,5 +16,21 @@ public class  Peon extends Pieza {
 	}
 	
 	//Metodos
-	
+	public boolean puedeMover(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
+			Casilla casillaDestino) {
+		//FIXME esta incompleto es para probar'
+		if(casillaDestino.getPieza() instanceof NoPieza){
+			if (this.color==Color.BLANCA) {
+				if(filaInicio==(filaDestino+1) && columnaInicio==columnaDestino) {
+					return true;
+				}
+			}
+			else {
+				if(filaInicio==(filaDestino-1) && columnaInicio==columnaDestino) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }

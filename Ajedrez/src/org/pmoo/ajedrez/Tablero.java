@@ -100,8 +100,7 @@ public class Tablero {
 				seleccion=Integer.parseInt(seleccionDePieza);
 			}
 			catch(NumberFormatException e){
-				e.printStackTrace();
-				//FIXME Gestionar esta excepcion
+				System.err.println("Por favor introduce un numero");
 			}
 			for(int i=0;i<tablero.length;i++) {
 				for(int j=0;j<tablero[i].length;j++) {
@@ -130,7 +129,7 @@ public class Tablero {
 					cont++;
 				}
 				else{
-					System.out.print(" | ");
+					System.out.print("  | ");
 					tablero[i][j].imprimirPieza();
 				}
 			}
@@ -139,42 +138,49 @@ public class Tablero {
 		}
 	}
 	
-	public void seleccionarMovimiento() {
+	public boolean seleccionarMovimiento() {
 		int[] posicionPiezaMover=this.seleccionarPieza();
 		Pieza piezaMover=tablero[posicionPiezaMover[0]][posicionPiezaMover[1]].getPieza();
 		boolean[][] puedeMoverse=new boolean[8][8];
+		System.out.println("Se va a mover esta pieza: " + piezaMover.visualizarPieza() + piezaMover.getNumeroPieza());
 		for(int i=0;i<tablero.length;i++) {
 			for(int j=0;j<tablero[i].length;j++) {
-				if(i!=posicionPiezaMover[0] && j!=posicionPiezaMover[1]) {
+//				if(i!=posicionPiezaMover[0] && j!=posicionPiezaMover[1]) {
 					puedeMoverse[i][j]=piezaMover.puedeMover(posicionPiezaMover[0], posicionPiezaMover[1], i, j, tablero[i][j]);
-				}
+					puedeMoverse[i][j]=piezaMover.puedeComer(posicionPiezaMover[0], posicionPiezaMover[1], i, j, tablero[i][j]);
+//				}
 			}
 		}
 		this.imprimirMovimientosConNumeros(puedeMoverse);
 		System.out.println("A donde quieres mover la pieza?");
+		System.out.println("Mete un caracter que no sea un numero para elegir otra pieza");
 		int seleccion=-1;
+		boolean movido=false;
 		while(seleccion<0) {
 			String seleccionDePieza= Teclado.getTeclado().pedirEntrada();
 			try {
 				seleccion=Integer.parseInt(seleccionDePieza);
 			}
 			catch(NumberFormatException e){
-				e.printStackTrace();
-				//FIXME Gestionar esta excepcion
+				System.out.println("Elige otra pieza");
+				return false;
 			}
 			for(int i=0;i<tablero.length;i++) {
 				for(int j=0;j<tablero[i].length;j++) {
 					if(tablero[i][j].getPieza().getNumeroPieza()==seleccion) {
 						piezaMover.mover(tablero[i][j]);
 						tablero[posicionPiezaMover[0]][posicionPiezaMover[1]].setPieza(new NoPieza(Color.BLANCA));
+						movido=true;
 					}
 				}
 			}
-			seleccion=-1;
-			System.err.println("Esa pieza no se ha encontrado, por favor vuelva a seleccionar una pieza");
+			if(!movido) {
+				seleccion=-1;
+				System.err.println("Esa pieza no se ha encontrado, por favor vuelva a seleccionar una pieza");
+			}
+			
 		}
-		
-		
+		return true;	
 	}
 	
 	private void imprimirMovimientosConNumeros(boolean[][] puedeMoverse) {
@@ -192,7 +198,7 @@ public class Tablero {
 					cont++;
 				}
 				else{
-					System.out.print(" | ");
+					System.out.print("  | ");
 					tablero[i][j].imprimirPieza();
 				}
 			}
