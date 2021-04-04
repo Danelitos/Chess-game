@@ -1,29 +1,45 @@
 package org.pmoo.ajedrez;
 
 public class Pieza {
-	//Atributos 
+	// Atributos
 	protected Color color;
 	protected String piezaAImprimir;
-	
-	//Constructora
+	protected int numeroPieza;
+
+	// Constructora
 	public Pieza(Color pColor) {
-		this.color=pColor;
+		this.color = pColor;
+		this.numeroPieza=-2;
 	}
-	
-	//Metodos 
+
+	// Metodos
 	public void mover(Casilla pCasillaDestino) {
-		
+		pCasillaDestino.setPieza(this);
 	}
-	
+
 	public String visualizarPieza() {
 		return piezaAImprimir;
 	}
-	
-	public boolean puedeMover(int filaInicio, int columnaInicio, int columnaDestino, int filaDestino, Casilla casillaDestino) {
+
+	public boolean puedeMover(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
+			Casilla casillaDestino) {
 		return false;
 	}
-	
+
 	public Color getColor() {
 		return this.color;
 	}
+
+	public int getNumeroPieza() {
+		return numeroPieza;
+	}
+
+	public void setNumeroPieza(int numeroPieza) {
+		this.numeroPieza = numeroPieza;
+	}
+	
+	public void resetearNumeroPieza() {
+		this.numeroPieza=-2;
+	}
+
 }

@@ -88,44 +88,116 @@ public class Tablero {
 			System.out.println(" | ");
 			System.out.println(" ————————————————————————————————————");
 		}
-//		System.out.println("   a    b    c    d    e    f    g    h");
+
 	}
 	
-	public Pieza seleccionarPieza() {
-//		Jugador j;
-//		this.imprimirTableroConNumeros(j);
-//		System.out.println("Que pieza quieres mover?");
-//		String seleccionDePieza= Teclado.getTeclado().pedirEntrada();
+	public int[] seleccionarPieza() {
+		System.out.println("Que pieza quieres mover?");
+		int seleccion=-1;
+		while(seleccion<0) {
+			String seleccionDePieza= Teclado.getTeclado().pedirEntrada();
+			try {
+				seleccion=Integer.parseInt(seleccionDePieza);
+			}
+			catch(NumberFormatException e){
+				e.printStackTrace();
+				//FIXME Gestionar esta excepcion
+			}
+			for(int i=0;i<tablero.length;i++) {
+				for(int j=0;j<tablero[i].length;j++) {
+					if(tablero[i][j].getPieza().getNumeroPieza()==seleccion) {
+						return new int[] {i,j};
+					}
+				}
+			}
+			seleccion=-1;
+			System.err.println("Esa pieza no se ha encontrado, por favor vuelva a seleccionar una pieza");
+		}
 		return null;
 	}
 	
 	public void imprimirTableroConNumeros(Jugador pJugador) {
 		int cont=1;
+		System.out.println("\n\n ————————————————————————————————————");
 		for(int i=0;i<tablero.length;i++) {
 			for(int j=0;j<tablero[i].length;j++) {
 				Pieza p=tablero[i][j].getPieza();
 				if (!(p instanceof NoPieza) && p.getColor()==pJugador.getColor()) {
+					System.out.print(" | ");
 					tablero[i][j].imprimirPieza();
 					System.out.print(cont);
+					p.setNumeroPieza(cont);
 					cont++;
 				}
+				else{
+					System.out.print(" | ");
+					tablero[i][j].imprimirPieza();
+				}
 			}
+			System.out.println(" | ");
+			System.out.println(" ————————————————————————————————————");
 		}
 	}
 	
 	public void seleccionarMovimiento() {
-//		Pieza piezaMover=this.seleccionarPieza();
-//		System.out.println("A donde quieres mover la pieza?");
-//		String posicion=Teclado.getTeclado().pedirEntrada();
-//		while(!piezaMover.puedeMover(posicion)) {
-//			if (piezaMover.puedeMover(posicion)) {
-//				piezaMover.mover();
-//			}
-//			else {
-//			System.err.println("No puedes mvoer la pieza a esa posicion, por favor eliga otra posicion");
-//			posicion=Teclado.getTeclado().pedirEntrada();
-//			}
-//		}
+		int[] posicionPiezaMover=this.seleccionarPieza();
+		Pieza piezaMover=tablero[posicionPiezaMover[0]][posicionPiezaMover[1]].getPieza();
+		boolean[][] puedeMoverse=new boolean[8][8];
+		for(int i=0;i<tablero.length;i++) {
+			for(int j=0;j<tablero[i].length;j++) {
+				if(i!=posicionPiezaMover[0] && j!=posicionPiezaMover[1]) {
+					puedeMoverse[i][j]=piezaMover.puedeMover(posicionPiezaMover[0], posicionPiezaMover[1], i, j, tablero[i][j]);
+				}
+			}
+		}
+		this.imprimirMovimientosConNumeros(puedeMoverse);
+		System.out.println("A donde quieres mover la pieza?");
+		int seleccion=-1;
+		while(seleccion<0) {
+			String seleccionDePieza= Teclado.getTeclado().pedirEntrada();
+			try {
+				seleccion=Integer.parseInt(seleccionDePieza);
+			}
+			catch(NumberFormatException e){
+				e.printStackTrace();
+				//FIXME Gestionar esta excepcion
+			}
+			for(int i=0;i<tablero.length;i++) {
+				for(int j=0;j<tablero[i].length;j++) {
+					if(tablero[i][j].getPieza().getNumeroPieza()==seleccion) {
+						piezaMover.mover(tablero[i][j]);
+						tablero[posicionPiezaMover[0]][posicionPiezaMover[1]].setPieza(new NoPieza(Color.BLANCA));
+					}
+				}
+			}
+			seleccion=-1;
+			System.err.println("Esa pieza no se ha encontrado, por favor vuelva a seleccionar una pieza");
+		}
 		
+		
+	}
+	
+	private void imprimirMovimientosConNumeros(boolean[][] puedeMoverse) {
+		int cont=1;
+		System.out.println("\n\n ————————————————————————————————————");
+		for(int i=0;i<tablero.length;i++) {
+			for(int j=0;j<tablero[i].length;j++) {
+				Pieza p=tablero[i][j].getPieza();
+				p.resetearNumeroPieza();
+				if (puedeMoverse[i][j]) {
+					System.out.print(" | ");
+					tablero[i][j].imprimirPieza();
+					System.out.print(cont);
+					p.setNumeroPieza(cont);
+					cont++;
+				}
+				else{
+					System.out.print(" | ");
+					tablero[i][j].imprimirPieza();
+				}
+			}
+			System.out.println(" | ");
+			System.out.println(" ————————————————————————————————————");
+		}
 	}
 }

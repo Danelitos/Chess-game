@@ -34,7 +34,6 @@ public class Ajedrez {
 		System.out.println("██║  ██║╚█████╔╝███████╗██████╔╝██║  ██║███████╗███████╗");
 		System.out.println("╚═╝  ╚═╝ ╚════╝ ╚══════╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝\n");
 		this.crearJugadores();
-		Tablero.getMiTablero().imprimirTablero();
 		while(!miTablero.jaqueMate() && !miTablero.reyAhogado()) {
 			this.turno();
 			if (turno==Color.BLANCA) {
@@ -75,7 +74,9 @@ public class Ajedrez {
 		else {
 			jugadorTurno=jugadorNegra;
 		}
+		System.out.println(jugadorTurno.getNombre() + " te toca mover");
 		miTablero.imprimirTableroConNumeros(jugadorTurno);
+		miTablero.seleccionarMovimiento();
 		
 	}
 }
