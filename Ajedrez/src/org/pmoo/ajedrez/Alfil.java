@@ -7,15 +7,12 @@ public class Alfil extends Pieza {
 	//Constructor
 	public Alfil(Color pColor) {
 		super(pColor);
+		if(super.color.equals(Color.NEGRA))
+			piezaAImprimir=ALFIL_NEGRO;
+		else {
+			piezaAImprimir=ALFIL_BLANCO;
+		}
 	}
 		
 	//Metodos
-	public String visualizarPieza() {
-		if(super.color.equals(Color.NEGRA))
-			return ALFIL_NEGRO;
-		else {
-			return ALFIL_BLANCO;
-		}
-	}
-	
 }

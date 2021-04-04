@@ -7,14 +7,12 @@ public class Rey extends Pieza {
 	//Constructor
 	public Rey(Color pColor) {
 		super(pColor);
+		if(super.color.equals(Color.NEGRA))
+			piezaAImprimir=REY_NEGRO;
+		else {
+			piezaAImprimir=REY_BLANCO;
+		}
 	}
 		
 	//Metodos
-	public String visualizarPieza() {
-		if(super.color.equals(Color.NEGRA))
-			return REY_NEGRO;
-		else {
-			return REY_BLANCO;
-		}
-	}
 }

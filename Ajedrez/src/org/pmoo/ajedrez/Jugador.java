@@ -4,7 +4,6 @@ public class Jugador {
 	//Atributos
 	private String nombre;
 	private Color color;
-	private boolean turno;
 	
 	//Constructora
 	public Jugador(String pNombre, Color pColor) {
@@ -21,7 +20,7 @@ public class Jugador {
 		return this.color.getColor();
 	}
 	
-	public boolean getTurno() {
-		return this.turno;
+	public Color getColor() {
+		return this.color;
 	}
 }

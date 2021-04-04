@@ -7,14 +7,13 @@ public class Caballo extends Pieza {
 	//Constructor
 	public Caballo(Color pColor) {
 		super(pColor);
+		if(super.color.equals(Color.NEGRA))
+			piezaAImprimir=CABALLO_NEGRO;
+		else {
+			piezaAImprimir=CABALLO_BLANCO;
+		}
 	}
 		
 	//Metodos
-	public String visualizarPieza() {
-		if(super.color.equals(Color.NEGRA))
-			return CABALLO_NEGRO;
-		else {
-			return CABALLO_BLANCO;
-		}
-	}
+	
 }

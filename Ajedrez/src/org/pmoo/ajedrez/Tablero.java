@@ -61,12 +61,8 @@ public class Tablero {
 		
 	}
 	
-	public void turno() {
-		
-	}
-	
 	public boolean jaqueMate() {
-		
+		return false;
 	}
 	
 	public void jaque() {
@@ -74,7 +70,7 @@ public class Tablero {
 	}
 	
 	public boolean reyAhogado() {
-		
+		return false;
 	}
 	
 	public Dama coronacion(Peon peon) {
@@ -96,40 +92,40 @@ public class Tablero {
 	}
 	
 	public Pieza seleccionarPieza() {
-		Jugador j;
-		this.imprimirTableroConNumeros(j);
-		System.out.println("Que pieza quieres mover?");
-		String seleccionDePieza= Teclado.getTeclado().pedirEntrada();
+//		Jugador j;
+//		this.imprimirTableroConNumeros(j);
+//		System.out.println("Que pieza quieres mover?");
+//		String seleccionDePieza= Teclado.getTeclado().pedirEntrada();
+		return null;
 	}
 	
-	public void imprimirTableroConNumeros(Jugador j) {
+	public void imprimirTableroConNumeros(Jugador pJugador) {
 		int cont=1;
-		if(j.getTurno()) {
-			for(int i=0;i<tablero.length;i++ && cont<=16) {
-				for(int j=0;j<tablero[i].length;j++ && cont<=16) {
-					if (!(tablero[i][j].getPieza() instanceof NoPieza)) {
-						tablero[i][j].imprimirPieza();
-						System.out.print(cont);
-						cont++;
-					}
+		for(int i=0;i<tablero.length;i++) {
+			for(int j=0;j<tablero[i].length;j++) {
+				Pieza p=tablero[i][j].getPieza();
+				if (!(p instanceof NoPieza) && p.getColor()==pJugador.getColor()) {
+					tablero[i][j].imprimirPieza();
+					System.out.print(cont);
+					cont++;
 				}
 			}
 		}
 	}
 	
 	public void seleccionarMovimiento() {
-		Pieza piezaMover=this.seleccionarPieza();
-		System.out.println("A donde quieres mover la pieza?");
-		String posicion=Teclado.getTeclado().pedirEntrada();
-		while(!piezaMover.puedeMover(posicion)) {
-			if (piezaMover.puedeMover(posicion)) {
-				piezaMover.mover();
-			}
-			else {
-			System.err.println("No puedes mvoer la pieza a esa posicion, por favor eliga otra posicion");
-			posicion=Teclado.getTeclado().pedirEntrada();
-			}
-		}
+//		Pieza piezaMover=this.seleccionarPieza();
+//		System.out.println("A donde quieres mover la pieza?");
+//		String posicion=Teclado.getTeclado().pedirEntrada();
+//		while(!piezaMover.puedeMover(posicion)) {
+//			if (piezaMover.puedeMover(posicion)) {
+//				piezaMover.mover();
+//			}
+//			else {
+//			System.err.println("No puedes mvoer la pieza a esa posicion, por favor eliga otra posicion");
+//			posicion=Teclado.getTeclado().pedirEntrada();
+//			}
+//		}
 		
 	}
 }

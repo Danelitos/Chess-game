@@ -3,6 +3,7 @@ package org.pmoo.ajedrez;
 public class Pieza {
 	//Atributos 
 	protected Color color;
+	protected String piezaAImprimir;
 	
 	//Constructora
 	public Pieza(Color pColor) {
@@ -10,15 +11,19 @@ public class Pieza {
 	}
 	
 	//Metodos 
-	public void mover() {
+	public void mover(Casilla pCasillaDestino) {
 		
 	}
 	
 	public String visualizarPieza() {
-		return new String();
+		return piezaAImprimir;
 	}
 	
-	public boolean puedeMover(String pPosicion) {
+	public boolean puedeMover(int filaInicio, int columnaInicio, int columnaDestino, int filaDestino, Casilla casillaDestino) {
 		return false;
+	}
+	
+	public Color getColor() {
+		return this.color;
 	}
 }

@@ -9,15 +9,12 @@ public class Torre extends Pieza {
 	//Constructor
 	public Torre(Color pColor) {
 		super(pColor);	
+		if(super.color.equals(Color.NEGRA))
+			piezaAImprimir=TORRE_NEGRA;
+		else {
+			piezaAImprimir=TORRE_BLANCA;
+		}
 	}
 		
 	//Metodos
-	public String visualizarPieza() {
-		if(super.color.equals(Color.NEGRA))
-			return TORRE_NEGRA;
-		else {
-			return TORRE_BLANCA;
-		}
-	}
-	
 }

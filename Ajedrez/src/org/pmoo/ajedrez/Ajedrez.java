@@ -7,11 +7,15 @@ import java.util.Random;
 public class Ajedrez {
 	//Atributos
 	private static Ajedrez miAjedrez;
-	private Jugador jugador1;
-	private Jugador jugador2;
+	private Jugador jugadorBlanca;
+	private Jugador jugadorNegra;
+	private Color turno;
+	private Tablero miTablero;
 	
 	//Constructora
 	private Ajedrez() {	
+		turno=Color.BLANCA;
+		miTablero=Tablero.getMiTablero();
 	}
 	
 	//Metodos
@@ -31,6 +35,15 @@ public class Ajedrez {
 		System.out.println("╚═╝  ╚═╝ ╚════╝ ╚══════╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝\n");
 		this.crearJugadores();
 		Tablero.getMiTablero().imprimirTablero();
+		while(!miTablero.jaqueMate() && !miTablero.reyAhogado()) {
+			this.turno();
+			if (turno==Color.BLANCA) {
+				turno=Color.NEGRA;
+			}
+			else {
+				turno=Color.BLANCA;
+			}
+		}
 	}
 	
 	private void crearJugadores() {
@@ -41,20 +54,28 @@ public class Ajedrez {
 		Random r= new Random(2);
 		int queficha=r.nextInt();
 		if (queficha==0) {
-			jugador1= new Jugador(nombreJugador1, Color.NEGRA);
-			jugador2= new Jugador(nombreJugador2, Color.BLANCA);
+			jugadorNegra= new Jugador(nombreJugador1, Color.NEGRA);
+			jugadorBlanca= new Jugador(nombreJugador2, Color.BLANCA);
 		}
 		else {
-			jugador2= new Jugador(nombreJugador1, Color.NEGRA);
-			jugador1= new Jugador(nombreJugador2, Color.BLANCA);
+			jugadorNegra= new Jugador(nombreJugador2, Color.NEGRA);
+			jugadorBlanca= new Jugador(nombreJugador1, Color.BLANCA);
 		}
-		System.out.println("\nA " + jugador1.getNombre() + " le ha tocado la ficha " + jugador1.imprimirColor());
-		System.out.println("A " + jugador2.getNombre() + " le ha tocado la ficha " + jugador2.imprimirColor());
+		System.out.println("\nA " + jugadorBlanca.getNombre() + " le ha tocado la ficha " + jugadorBlanca.imprimirColor());
+		System.out.println("A " + jugadorNegra.getNombre() + " le ha tocado la ficha " + jugadorNegra.imprimirColor());
 		
 	}
 	
 	
 	public void turno() {
-		Tablero.getMiTablero().turno();
+		Jugador jugadorTurno;
+		if(turno==Color.BLANCA){
+			jugadorTurno=jugadorBlanca;
+		}
+		else {
+			jugadorTurno=jugadorNegra;
+		}
+		miTablero.imprimirTableroConNumeros(jugadorTurno);
+		
 	}
 }

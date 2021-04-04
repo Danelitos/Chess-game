@@ -7,15 +7,13 @@ public class Dama extends Pieza {
 	//Constructor
 	public Dama(Color pColor) {
 		super(pColor);
+		if(super.color.equals(Color.NEGRA))
+			piezaAImprimir=DAMA_NEGRA;
+		else {
+			piezaAImprimir=DAMA_BLANCA;
+		}
 	}
 	
 	//Metodos
-	public String visualizarPieza() {
-		if(super.color.equals(Color.NEGRA))
-			return DAMA_NEGRA;
-		else {
-			return DAMA_BLANCA;
-		}
-	}
 	
 }

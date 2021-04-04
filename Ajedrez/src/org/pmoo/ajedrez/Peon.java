@@ -8,18 +8,13 @@ public class  Peon extends Pieza {
 	//Constructor
 	public Peon(Color pColor) {
 		super(pColor);
-	}
-	
-	//Metodos
-	public String visualizarPieza() {
 		if(super.color.equals(Color.NEGRA))
-			return PEON_NEGRO;
+			piezaAImprimir=PEON_NEGRO;
 		else {
-			return PEON_BLANCO;
+			piezaAImprimir=PEON_BLANCO;
 		}
 	}
 	
-//	public boolean[][] movimientosPosibles(){
-//
-//	}
+	//Metodos
+	
 }
