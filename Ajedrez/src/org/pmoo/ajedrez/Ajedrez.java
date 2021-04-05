@@ -34,7 +34,7 @@ public class Ajedrez {
 		System.out.println("██║  ██║╚█████╔╝███████╗██████╔╝██║  ██║███████╗███████╗");
 		System.out.println("╚═╝  ╚═╝ ╚════╝ ╚══════╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝\n");
 		this.crearJugadores();
-		while(!miTablero.jaqueMate() && !miTablero.reyAhogado()) {
+		do {
 			this.turno();
 			if (turno==Color.BLANCA) {
 				turno=Color.NEGRA;
@@ -43,6 +43,7 @@ public class Ajedrez {
 				turno=Color.BLANCA;
 			}
 		}
+		while(!miTablero.jaqueMate() && !miTablero.reyAhogado());
 	}
 	
 	private void crearJugadores() {
