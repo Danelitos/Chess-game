@@ -4,7 +4,7 @@ public class Pieza {
 	// Atributos
 	protected Color color;
 	protected String piezaAImprimir;
-	protected int numeroPieza;
+	private int numeroPieza;
 
 	// Constructora
 	public Pieza(Color pColor) {

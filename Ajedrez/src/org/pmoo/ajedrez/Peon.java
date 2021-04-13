@@ -23,14 +23,16 @@ public class Peon extends Pieza {
 				if (filaInicio == (filaDestino + 1) && columnaInicio == columnaDestino) {
 					return true;
 				}
-				if (filaInicio == 7 && filaInicio == (filaDestino + 2) && columnaInicio == columnaDestino) {
+				if (filaInicio == 6 && filaInicio == (filaDestino + 2) && columnaInicio == columnaDestino &&
+						Tablero.getMiTablero().casillaVacia(5, columnaDestino)) {
 					return true;
 				}
 			} else {
 				if (filaInicio == (filaDestino - 1) && columnaInicio == columnaDestino) {
 					return true;
 				}
-				if (filaInicio == 1 && filaInicio == (filaDestino - 2) && columnaInicio == columnaDestino) {
+				if (filaInicio == 1 && filaInicio == (filaDestino - 2) && columnaInicio == columnaDestino &&
+						Tablero.getMiTablero().casillaVacia(2, columnaDestino)) {
 					return true;
 				}
 			}
@@ -42,17 +44,27 @@ public class Peon extends Pieza {
 			Casilla casillaDestino) {
 		if (!(casillaDestino.getPieza() instanceof NoPieza)) {
 			if (this.color == Color.BLANCA) {
-				if (((filaInicio == (filaDestino + 1) && columnaInicio == columnaDestino - 1)
-						|| (filaInicio == (filaDestino - 1) && columnaInicio == columnaDestino - 1))
+				//comer arriba a la derecha
+				if (((filaInicio == (filaDestino + 1) && columnaInicio == columnaDestino + 1))
 						&& casillaDestino.getPieza().getColor() == Color.NEGRA) {
+					return true;
+				}
+				//comer arriba a la izquierda
+				if((filaInicio == (filaDestino + 1) && columnaInicio == columnaDestino - 1) && 
+						(casillaDestino.getPieza().getColor() == Color.NEGRA)) {
 					return true;
 				}
 			}
 
 			else {
-				if (((filaInicio == (filaDestino + 1) && columnaInicio == columnaDestino + 1)
-						|| (filaInicio == (filaDestino - 1) && columnaInicio == columnaDestino + 1))
+				//comer abajo a la derecha
+				if ((filaInicio == (filaDestino - 1) && columnaInicio == columnaDestino + 1)
 						&& casillaDestino.getPieza().getColor() == Color.BLANCA) {
+					return true;
+				}
+				//comer abajo a la izquierda
+				if((filaInicio == (filaDestino - 1) && columnaInicio == columnaDestino - 1) &&
+						casillaDestino.getPieza().getColor() == Color.BLANCA) {
 					return true;
 				}
 			}
