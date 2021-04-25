@@ -153,7 +153,7 @@ public class Tablero {
 		}
 	}
 
-	public int[] seleccionarPieza() {
+	public Coordenada seleccionarPieza() {
 		System.out.println("Que pieza quieres mover?");
 		int seleccion = -1;
 		while (seleccion < 0) {
@@ -166,7 +166,7 @@ public class Tablero {
 			for (int i = 0; i < tablero.length; i++) {
 				for (int j = 0; j < tablero[i].length; j++) {
 					if (tablero[i][j].getPieza().getNumeroPieza() == seleccion) {
-						return new int[] { i, j };
+						return new Coordenada ( i, j );
 					}
 				}
 			}
@@ -199,16 +199,16 @@ public class Tablero {
 	}
 
 	public boolean seleccionarMovimiento() {
-		int[] posicionPiezaMover = this.seleccionarPieza();
-		Pieza piezaMover = tablero[posicionPiezaMover[0]][posicionPiezaMover[1]].getPieza();
+		Coordenada posicionPiezaMover = this.seleccionarPieza();
+		Pieza piezaMover = tablero[posicionPiezaMover.getFila()][posicionPiezaMover.getColumna()].getPieza();
 		boolean[][] puedeMoverse = new boolean[8][8];
 		System.out.println("Se va a mover esta pieza: " + piezaMover.visualizarPieza() + piezaMover.getNumeroPieza());
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
-				puedeMoverse[i][j] = piezaMover.puedeMover(posicionPiezaMover[0], posicionPiezaMover[1], i, j,
+				puedeMoverse[i][j] = piezaMover.puedeMover(new Coordenada(posicionPiezaMover.getFila(), posicionPiezaMover.getColumna()), new Coordenada(i, j),
 						tablero[i][j]);
 				if (!puedeMoverse[i][j]) {
-					puedeMoverse[i][j] = piezaMover.puedeComer(posicionPiezaMover[0], posicionPiezaMover[1], i, j,
+					puedeMoverse[i][j] = piezaMover.puedeComer(new Coordenada(posicionPiezaMover.getFila(), posicionPiezaMover.getColumna()), new Coordenada( i, j),
 							tablero[i][j]);
 				}
 			}
@@ -230,7 +230,7 @@ public class Tablero {
 				for (int j = 0; j < tablero[i].length; j++) {
 					if (tablero[i][j].getPieza().getNumeroPieza() == seleccion) {
 						piezaMover.mover(tablero[i][j]);
-						tablero[posicionPiezaMover[0]][posicionPiezaMover[1]].setPieza(new NoPieza(Color.BLANCA));
+						tablero[posicionPiezaMover.getFila()][posicionPiezaMover.getColumna()].setPieza(new NoPieza(Color.BLANCA));
 						movido = true;
 					}
 				}
@@ -244,14 +244,14 @@ public class Tablero {
 		return true;
 	}
 
-	private void imprimirMovimientosConNumeros(boolean[][] puedeMoverse) {
+	private void imprimirMovimientosConNumeros(boolean[][] pPuedeMoverse) {
 		int cont = 1;
 		System.out.println("\n\n ————————————————————————————————————");
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 				Pieza p = tablero[i][j].getPieza();
 				p.resetearNumeroPieza();
-				if (puedeMoverse[i][j]) {
+				if (pPuedeMoverse[i][j]) {
 					System.out.print(" | ");
 					tablero[i][j].imprimirPieza();
 					System.out.print(cont);
@@ -267,7 +267,7 @@ public class Tablero {
 		}
 	}
 
-	public boolean casillaVacia(int fila, int columna) {
-		return tablero[fila][columna].getPieza() instanceof NoPieza;
+	public boolean casillaVacia(Coordenada pCoordenada) {
+		return tablero[pCoordenada.getFila()][pCoordenada.getColumna()].getPieza() instanceof NoPieza;
 	}
 }

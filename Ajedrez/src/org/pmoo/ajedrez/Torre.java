@@ -16,40 +16,39 @@ public class Torre extends Pieza {
 	}
 
 	// Metodos
-	public boolean puedeMover(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
-			Casilla casillaDestino) {
+	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (casillaDestino.getPieza() instanceof NoPieza) {
 			// Arriba
-			if (filaInicio > filaDestino && columnaInicio == columnaDestino) {
-				for (int i = 1; i < filaInicio-filaDestino; i++) {
-					if (!(Tablero.getMiTablero().casillaVacia((filaInicio - i), (columnaInicio)))) {
+			if (pCoordenadaInicio.getFila() > pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
+				for (int i = 1; i < pCoordenadaInicio.getFila()-pCoordenadaDestino.getFila(); i++) {
+					if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila() - i), (pCoordenadaInicio.getColumna()))))) {
 						return false;
 					}
 				}
 				return true;
 			}
 			// Abajo
-			if (filaInicio < filaDestino && columnaInicio == columnaDestino) {
-				for (int i = 1; i < filaDestino-filaInicio; i++) {
-					if (!(Tablero.getMiTablero().casillaVacia((filaInicio + i), (columnaInicio)))) {
+			if (pCoordenadaInicio.getFila() < pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
+				for (int i = 1; i < pCoordenadaDestino.getFila()-pCoordenadaInicio.getFila(); i++) {
+					if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila() + i), (pCoordenadaInicio.getColumna()))))) {
 						return false;
 					}
 				}
 				return true;
 			}
 			// Izquierda
-			if (filaInicio == filaDestino && columnaInicio < columnaDestino) {
-				for (int i = 1; i < columnaDestino-columnaInicio; i++) {
-					if (!(Tablero.getMiTablero().casillaVacia((filaInicio), (columnaInicio + i)))) {
+			if (pCoordenadaInicio.getFila() == pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() < pCoordenadaDestino.getColumna()) {
+				for (int i = 1; i < pCoordenadaDestino.getColumna()-pCoordenadaInicio.getColumna(); i++) {
+					if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila()), (pCoordenadaInicio.getColumna() + i))))) {
 						return false;
 					}
 				}
 				return true;
 			}
 			// Derecha
-			if (filaInicio == filaDestino && columnaInicio > columnaDestino) {
-				for (int i = 1; i < columnaInicio-columnaDestino; i++) {
-					if (!(Tablero.getMiTablero().casillaVacia((filaInicio), (columnaInicio - i)))) {
+			if (pCoordenadaInicio.getFila() == pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() > pCoordenadaDestino.getColumna()) {
+				for (int i = 1; i < pCoordenadaInicio.getColumna()-pCoordenadaDestino.getColumna(); i++) {
+					if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila()), (pCoordenadaInicio.getColumna() - i))))) {
 						return false;
 					}
 				}
@@ -60,41 +59,40 @@ public class Torre extends Pieza {
 		return false;
 	}
 
-	public boolean puedeComer(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
-			Casilla casillaDestino) {
+	public boolean puedeComer(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (!(casillaDestino.getPieza() instanceof NoPieza)) {
 			if (this.color == Color.BLANCA && casillaDestino.getPieza().getColor() == Color.NEGRA) {
 				// Arriba
-				if (filaInicio > filaDestino && columnaInicio == columnaDestino) {
-					for (int i = 1; i < filaInicio-filaDestino; i++) {
-						if (!(Tablero.getMiTablero().casillaVacia((filaInicio - i), (columnaInicio)))) {
+				if (pCoordenadaInicio.getFila() > pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
+					for (int i = 1; i < pCoordenadaInicio.getFila()-pCoordenadaDestino.getFila(); i++) {
+						if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila() - i), (pCoordenadaInicio.getColumna()))))) {
 							return false;
 						}
 					}
 					return true;
 				}
 				// Abajo
-				if (filaInicio < filaDestino && columnaInicio == columnaDestino) {
-					for (int i = 1; i < filaDestino-filaInicio; i++) {
-						if (!(Tablero.getMiTablero().casillaVacia((filaInicio + i), (columnaInicio)))) {
+				if (pCoordenadaInicio.getFila() < pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
+					for (int i = 1; i < pCoordenadaDestino.getFila()-pCoordenadaInicio.getFila(); i++) {
+						if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila() + i), (pCoordenadaInicio.getColumna()))))) {
 							return false;
 						}
 					}
 					return true;
 				}
 				// Izquierda
-				if (filaInicio == filaDestino && columnaInicio < columnaDestino) {
-					for (int i = 1; i < columnaDestino-columnaInicio; i++) {
-						if (!(Tablero.getMiTablero().casillaVacia((filaInicio), (columnaInicio + i)))) {
+				if (pCoordenadaInicio.getFila() == pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() < pCoordenadaDestino.getColumna()) {
+					for (int i = 1; i < pCoordenadaDestino.getColumna()-pCoordenadaInicio.getColumna(); i++) {
+						if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila()), (pCoordenadaInicio.getColumna() + i))))) {
 							return false;
 						}
 					}
 					return true;
 				}
 				// Derecha
-				if (filaInicio == filaDestino && columnaInicio > columnaDestino) {
-					for (int i = 1; i < columnaInicio-columnaDestino; i++) {
-						if (!(Tablero.getMiTablero().casillaVacia((filaInicio), (columnaInicio - i)))) {
+				if (pCoordenadaInicio.getFila() == pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() > pCoordenadaDestino.getColumna()) {
+					for (int i = 1; i < pCoordenadaInicio.getColumna()-pCoordenadaDestino.getColumna(); i++) {
+						if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila()), (pCoordenadaInicio.getColumna() - i))))) {
 							return false;
 						}
 					}
@@ -105,36 +103,36 @@ public class Torre extends Pieza {
 
 			else if (this.color == Color.NEGRA && casillaDestino.getPieza().getColor() == Color.BLANCA) {
 				// Arriba
-				if (filaInicio > filaDestino && columnaInicio == columnaDestino) {
-					for (int i = 1; i < filaInicio-filaDestino; i++) {
-						if (!(Tablero.getMiTablero().casillaVacia((filaInicio - i), (columnaInicio)))) {
+				if (pCoordenadaInicio.getFila() > pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
+					for (int i = 1; i < pCoordenadaInicio.getFila()-pCoordenadaDestino.getFila(); i++) {
+						if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila() - i), (pCoordenadaInicio.getColumna()))))) {
 							return false;
 						}
 					}
 					return true;
 				}
 				// Abajo
-				if (filaInicio < filaDestino && columnaInicio == columnaDestino) {
-					for (int i = 1; i < filaDestino-filaInicio; i++) {
-						if (!(Tablero.getMiTablero().casillaVacia((filaInicio + i), (columnaInicio)))) {
+				if (pCoordenadaInicio.getFila() < pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
+					for (int i = 1; i < pCoordenadaDestino.getFila()-pCoordenadaInicio.getFila(); i++) {
+						if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila() + i), (pCoordenadaInicio.getColumna()))))) {
 							return false;
 						}
 					}
 					return true;
 				}
 				// Izquierda
-				if (filaInicio == filaDestino && columnaInicio < columnaDestino) {
-					for (int i = 1; i < columnaDestino-columnaInicio; i++) {
-						if (!(Tablero.getMiTablero().casillaVacia((filaInicio), (columnaInicio + i)))) {
+				if (pCoordenadaInicio.getFila() == pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() < pCoordenadaDestino.getColumna()) {
+					for (int i = 1; i < pCoordenadaDestino.getColumna()-pCoordenadaInicio.getColumna(); i++) {
+						if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila()), (pCoordenadaInicio.getColumna() + i))))) {
 							return false;
 						}
 					}
 					return true;
 				}
 				// Derecha
-				if (filaInicio == filaDestino && columnaInicio > columnaDestino) {
-					for (int i = 1; i < columnaInicio-columnaDestino; i++) {
-						if (!(Tablero.getMiTablero().casillaVacia((filaInicio), (columnaInicio - i)))) {
+				if (pCoordenadaInicio.getFila() == pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() > pCoordenadaDestino.getColumna()) {
+					for (int i = 1; i < pCoordenadaInicio.getColumna()-pCoordenadaDestino.getColumna(); i++) {
+						if (!(Tablero.getMiTablero().casillaVacia(new Coordenada((pCoordenadaInicio.getFila()), (pCoordenadaInicio.getColumna() - i))))) {
 							return false;
 						}
 					}

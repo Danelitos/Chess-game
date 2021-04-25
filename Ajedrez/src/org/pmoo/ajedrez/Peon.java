@@ -16,23 +16,22 @@ public class Peon extends Pieza {
 	}
 
 	// Metodos
-	public boolean puedeMover(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
-			Casilla casillaDestino) {
+	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (casillaDestino.getPieza() instanceof NoPieza) {
 			if (this.color == Color.BLANCA) {
-				if (filaInicio == (filaDestino + 1) && columnaInicio == columnaDestino) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
 					return true;
 				}
-				if (filaInicio == 6 && filaInicio == (filaDestino + 2) && columnaInicio == columnaDestino &&
-						Tablero.getMiTablero().casillaVacia(5, columnaDestino)) {
+				if (pCoordenadaInicio.getFila() == 6 && pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 2) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna() &&
+						Tablero.getMiTablero().casillaVacia(new Coordenada(5, pCoordenadaDestino.getColumna()))) {
 					return true;
 				}
 			} else {
-				if (filaInicio == (filaDestino - 1) && columnaInicio == columnaDestino) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
 					return true;
 				}
-				if (filaInicio == 1 && filaInicio == (filaDestino - 2) && columnaInicio == columnaDestino &&
-						Tablero.getMiTablero().casillaVacia(2, columnaDestino)) {
+				if (pCoordenadaInicio.getFila() == 1 && pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 2) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna() &&
+						Tablero.getMiTablero().casillaVacia(new Coordenada(2, pCoordenadaDestino.getColumna()))) {
 					return true;
 				}
 			}
@@ -40,17 +39,16 @@ public class Peon extends Pieza {
 		return false;
 	}
 
-	public boolean puedeComer(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
-			Casilla casillaDestino) {
+	public boolean puedeComer(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (!(casillaDestino.getPieza() instanceof NoPieza)) {
 			if (this.color == Color.BLANCA) {
 				//comer arriba a la derecha
-				if (((filaInicio == (filaDestino + 1) && columnaInicio == columnaDestino + 1))
+				if (((pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna() + 1))
 						&& casillaDestino.getPieza().getColor() == Color.NEGRA) {
 					return true;
 				}
 				//comer arriba a la izquierda
-				if((filaInicio == (filaDestino + 1) && columnaInicio == columnaDestino - 1) && 
+				if((pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna() - 1) && 
 						(casillaDestino.getPieza().getColor() == Color.NEGRA)) {
 					return true;
 				}
@@ -58,12 +56,12 @@ public class Peon extends Pieza {
 
 			else {
 				//comer abajo a la derecha
-				if ((filaInicio == (filaDestino - 1) && columnaInicio == columnaDestino + 1)
+				if ((pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna() + 1)
 						&& casillaDestino.getPieza().getColor() == Color.BLANCA) {
 					return true;
 				}
 				//comer abajo a la izquierda
-				if((filaInicio == (filaDestino - 1) && columnaInicio == columnaDestino - 1) &&
+				if((pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna() - 1) &&
 						casillaDestino.getPieza().getColor() == Color.BLANCA) {
 					return true;
 				}

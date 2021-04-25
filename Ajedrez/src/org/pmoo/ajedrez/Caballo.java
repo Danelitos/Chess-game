@@ -15,31 +15,30 @@ public class Caballo extends Pieza {
 	}
 		
 	//Metodos
-	public boolean puedeMover(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
-			Casilla casillaDestino) {
+	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (casillaDestino.getPieza() instanceof NoPieza) {
-			if (filaInicio == (filaDestino + 2) && columnaInicio == (columnaDestino +1)) {
+			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +1)) {
 				return true;
 			}
-			if (filaInicio == (filaDestino + 2) && columnaInicio == (columnaDestino -1)) {
+			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -1)) {
 				return true;
 			}
-			if (filaInicio == (filaDestino - 2) && columnaInicio == (columnaDestino +1)) {
+			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +1)) {
 				return true;
 			}
-			if (filaInicio == (filaDestino - 2) && columnaInicio == (columnaDestino -1)) {
+			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -1)) {
 				return true;
 			}
-			if (filaInicio == (filaDestino + 1) && columnaInicio == (columnaDestino +2)) {
+			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +2)) {
 				return true;
 			}
-			if (filaInicio == (filaDestino + 1) && columnaInicio == (columnaDestino -2)) {
+			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -2)) {
 				return true;
 			}
-			if (filaInicio == (filaDestino - 1) && columnaInicio == (columnaDestino +2)) {
+			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +2)) {
 				return true;
 			}
-			if (filaInicio == (filaDestino - 1) && columnaInicio == (columnaDestino -2)) {
+			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -2)) {
 				return true;
 			}
 			
@@ -47,59 +46,58 @@ public class Caballo extends Pieza {
 		return false;
 	}
 
-	public boolean puedeComer(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
-			Casilla casillaDestino) {
+	public boolean puedeComer(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (!(casillaDestino.getPieza() instanceof NoPieza)) {
 			if (this.color == Color.BLANCA && casillaDestino.getPieza().getColor()==Color.NEGRA) {
-				if (filaInicio == (filaDestino + 2) && columnaInicio == (columnaDestino +1)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +1)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino + 2) && columnaInicio == (columnaDestino -1)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -1)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino - 2) && columnaInicio == (columnaDestino +1)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +1)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino - 2) && columnaInicio == (columnaDestino -1)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -1)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino + 1) && columnaInicio == (columnaDestino +2)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +2)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino + 1) && columnaInicio == (columnaDestino -2)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -2)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino - 1) && columnaInicio == (columnaDestino +2)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +2)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino - 1) && columnaInicio == (columnaDestino -2)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -2)) {
 					return true;
 				}
 			}
 
 			else if (this.color == Color.NEGRA && casillaDestino.getPieza().getColor()==Color.BLANCA){
-				if (filaInicio == (filaDestino + 2) && columnaInicio == (columnaDestino +1)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +1)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino + 2) && columnaInicio == (columnaDestino -1)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -1)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino - 2) && columnaInicio == (columnaDestino +1)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +1)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino - 2) && columnaInicio == (columnaDestino -1)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -1)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino + 1) && columnaInicio == (columnaDestino +2)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +2)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino + 1) && columnaInicio == (columnaDestino -2)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -2)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino - 1) && columnaInicio == (columnaDestino +2)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +2)) {
 					return true;
 				}
-				if (filaInicio == (filaDestino - 1) && columnaInicio == (columnaDestino -2)) {
+				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() - 1) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() -2)) {
 					return true;
 				}
 			}

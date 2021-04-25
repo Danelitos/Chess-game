@@ -21,8 +21,7 @@ public class Pieza {
 		return piezaAImprimir;
 	}
 
-	public boolean puedeMover(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
-			Casilla casillaDestino) {
+	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		return false;
 	}
 
@@ -42,8 +41,7 @@ public class Pieza {
 		this.numeroPieza=-2;
 	}
 	
-	public boolean puedeComer(int filaInicio, int columnaInicio, int filaDestino, int columnaDestino,
-			Casilla casillaDestino) {
+	public boolean puedeComer(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		return false;
 	}
 

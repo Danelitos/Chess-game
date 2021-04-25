@@ -9,6 +9,10 @@ public class NoPieza extends Pieza {
 		super(pColor);
 	}
 	
+	public NoPieza() {
+		this(Color.BLANCA);
+	}
+	
 	//Metodos
 	public String visualizarPieza() {
 		return NO_PIEZA;
