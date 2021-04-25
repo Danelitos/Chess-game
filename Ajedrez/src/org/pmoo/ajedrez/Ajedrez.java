@@ -42,6 +42,7 @@ public class Ajedrez {
 			else {
 				turno=Color.BLANCA;
 			}
+			Tablero.getMiTablero().coronacion();
 		}
 		while(!miTablero.jaqueMate() && !miTablero.reyAhogado());
 	}

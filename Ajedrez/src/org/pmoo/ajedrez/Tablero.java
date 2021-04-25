@@ -30,8 +30,8 @@ public class Tablero {
 		tablero[0][0].setPieza(new Torre(Color.NEGRA));
 		tablero[0][1].setPieza(new Caballo(Color.NEGRA));
 		tablero[0][2].setPieza(new Alfil(Color.NEGRA));
-		tablero[0][3].setPieza(new Rey(Color.NEGRA));
-		tablero[0][4].setPieza(new Dama(Color.NEGRA));
+		tablero[0][4].setPieza(new Rey(Color.NEGRA));
+		tablero[0][3].setPieza(new Dama(Color.NEGRA));
 		tablero[0][5].setPieza(new Alfil(Color.NEGRA));
 		tablero[0][6].setPieza(new Caballo(Color.NEGRA));
 		tablero[0][7].setPieza(new Torre(Color.NEGRA));
@@ -44,8 +44,8 @@ public class Tablero {
 		tablero[7][0].setPieza(new Torre(Color.BLANCA));
 		tablero[7][1].setPieza(new Caballo(Color.BLANCA));
 		tablero[7][2].setPieza(new Alfil(Color.BLANCA));
-		tablero[7][3].setPieza(new Rey(Color.BLANCA));
-		tablero[7][4].setPieza(new Dama(Color.BLANCA));
+		tablero[7][4].setPieza(new Rey(Color.BLANCA));
+		tablero[7][3].setPieza(new Dama(Color.BLANCA));
 		tablero[7][5].setPieza(new Alfil(Color.BLANCA));
 		tablero[7][6].setPieza(new Caballo(Color.BLANCA));
 		tablero[7][7].setPieza(new Torre(Color.BLANCA));
@@ -141,7 +141,16 @@ public class Tablero {
 	}
 
 	public void coronacion() {
-
+		for (int i = 0; i < tablero.length; i++) {
+			if(tablero[0][i].getPieza() instanceof Peon && tablero[0][i].getPieza().getColor()==Color.BLANCA) {
+				tablero[0][i].setPieza(new Dama(Color.BLANCA));
+			}
+		}
+		for (int i = 0; i < tablero.length; i++) {
+			if(tablero[7][i].getPieza() instanceof Peon && tablero[0][i].getPieza().getColor()==Color.NEGRA) {
+				tablero[7][i].setPieza(new Dama(Color.NEGRA));
+			}
+		}
 	}
 
 	public int[] seleccionarPieza() {
@@ -260,16 +269,5 @@ public class Tablero {
 
 	public boolean casillaVacia(int fila, int columna) {
 		return tablero[fila][columna].getPieza() instanceof NoPieza;
-	}
-	
-	
-	//Solo se utilizan para los test para probar movimentos particulares
-	void setTablero(Casilla[][] tableroTest) {
-		this.tablero=tableroTest;
-	}
-	
-	//Solo se utilizan para los test para probar movimentos particulares
-	Casilla[][] getTablero(){
-		return this.tablero;
 	}
 }
