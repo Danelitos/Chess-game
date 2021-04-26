@@ -1,5 +1,5 @@
 Jugador1
-Jugadro2
+Jugador2
 9
 a
 5

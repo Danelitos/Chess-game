@@ -57,97 +57,329 @@ public class Tablero {
 	}
 
 	public boolean jaqueMate() {
-//		boolean[] puedeMover=new boolean[8];
-//		boolean[] puedeComer=new boolean[8];
-//		boolean jaqueMateBlanca=false;
-//		boolean jaqueMateNegra=false;
-//		for(int i=0;i<tablero.length;i++) {
-//			for(int j=0;j<tablero[i].length;j++) {
-//				if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor()==Color.BLANCA){
-//					try {
-//						puedeMover[0]=tablero[i][j].getPieza().puedeMover(i, j, i+1 ,j, tablero[i+1][j]);
-//						puedeMover[1]=tablero[i][j].getPieza().puedeMover(i, j, i-1 ,j, tablero[i-1][j]);
-//						puedeMover[2]=tablero[i][j].getPieza().puedeMover(i, j, i ,j+1, tablero[i][j+1]);
-//						puedeMover[3]=tablero[i][j].getPieza().puedeMover(i, j, i ,j-1, tablero[i][j-1]);
-//						puedeMover[4]=tablero[i][j].getPieza().puedeMover(i, j, i+1 ,j-1, tablero[i+1][j-1]);
-//						puedeMover[5]=tablero[i][j].getPieza().puedeMover(i, j, i+1 ,j+1, tablero[i+1][j+1]);
-//						puedeMover[6]=tablero[i][j].getPieza().puedeMover(i, j, i-1 ,j+1, tablero[i-1][j+1]);
-//						puedeMover[7]=tablero[i][j].getPieza().puedeMover(i, j, i-1 ,j-1, tablero[i-1][j-1]);
-//						puedeComer[0]=tablero[i][j].getPieza().puedeComer(i, j, i+1 ,j, tablero[i+1][j]);
-//						puedeComer[1]=tablero[i][j].getPieza().puedeComer(i, j, i-1 ,j, tablero[i-1][j]);
-//						puedeComer[2]=tablero[i][j].getPieza().puedeComer(i, j, i ,j+1, tablero[i][j+1]);
-//						puedeComer[3]=tablero[i][j].getPieza().puedeComer(i, j, i ,j-1, tablero[i][j-1]);
-//						puedeComer[4]=tablero[i][j].getPieza().puedeComer(i, j, i+1 ,j-1, tablero[i+1][j-1]);
-//						puedeComer[5]=tablero[i][j].getPieza().puedeComer(i, j, i+1 ,j+1, tablero[i+1][j+1]);
-//						puedeComer[6]=tablero[i][j].getPieza().puedeComer(i, j, i-1 ,j+1, tablero[i-1][j+1]);
-//						puedeComer[7]=tablero[i][j].getPieza().puedeComer(i, j, i-1 ,j-1, tablero[i-1][j-1]);
-//					}
-//					//FIXME Arreglar lo mas rapido posible
-//					catch(ArrayIndexOutOfBoundsException e){
-//						
-//					}
-//					for(int n=0;n<8;n++) {
-//						jaqueMateBlanca=jaqueMateBlanca || !puedeMover[n] || !puedeComer[n];
-//					}
-//					if(jaqueMateBlanca) {
-//						System.out.println("Han perdido las blancas, enhorabuena a las negras, habeis GANADO!!!");
-//						return true;
-//					}
-//						
-//
-//				}
-//				else if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor()==Color.NEGRA) {
-//					try {
-//						puedeMover[0]=tablero[i][j].getPieza().puedeMover(i, j, i+1 ,j, tablero[i+1][j]);
-//						puedeMover[1]=tablero[i][j].getPieza().puedeMover(i, j, i-1 ,j, tablero[i-1][j]);
-//						puedeMover[2]=tablero[i][j].getPieza().puedeMover(i, j, i ,j+1, tablero[i][j+1]);
-//						puedeMover[3]=tablero[i][j].getPieza().puedeMover(i, j, i ,j-1, tablero[i][j-1]);
-//						puedeMover[4]=tablero[i][j].getPieza().puedeMover(i, j, i+1 ,j-1, tablero[i+1][j-1]);
-//						puedeMover[5]=tablero[i][j].getPieza().puedeMover(i, j, i+1 ,j+1, tablero[i+1][j+1]);
-//						puedeMover[6]=tablero[i][j].getPieza().puedeMover(i, j, i-1 ,j+1, tablero[i-1][j+1]);
-//						puedeMover[7]=tablero[i][j].getPieza().puedeMover(i, j, i-1 ,j-1, tablero[i-1][j-1]);
-//						puedeComer[0]=tablero[i][j].getPieza().puedeComer(i, j, i+1 ,j, tablero[i+1][j]);
-//						puedeComer[1]=tablero[i][j].getPieza().puedeComer(i, j, i-1 ,j, tablero[i-1][j]);
-//						puedeComer[2]=tablero[i][j].getPieza().puedeComer(i, j, i ,j+1, tablero[i][j+1]);
-//						puedeComer[3]=tablero[i][j].getPieza().puedeComer(i, j, i ,j-1, tablero[i][j-1]);
-//						puedeComer[4]=tablero[i][j].getPieza().puedeComer(i, j, i+1 ,j-1, tablero[i+1][j-1]);
-//						puedeComer[5]=tablero[i][j].getPieza().puedeComer(i, j, i+1 ,j+1, tablero[i+1][j+1]);
-//						puedeComer[6]=tablero[i][j].getPieza().puedeComer(i, j, i-1 ,j+1, tablero[i-1][j+1]);
-//						puedeComer[7]=tablero[i][j].getPieza().puedeComer(i, j, i-1 ,j-1, tablero[i-1][j-1]);
-//					}
-//					//FIXME Arreglar mas rapido posible
-//					catch(ArrayIndexOutOfBoundsException e){
-//						
-//					}
-//					for(int n=0;n<8;n++) {
-//						jaqueMateNegra=jaqueMateNegra || !puedeMover[n] || !puedeComer[n];
-//					}
-//					if(jaqueMateNegra) {
-//						System.out.println("Han perdido las negras, enhorabuena a las blancas, habeis GANADO!!!");
-//						return true;
-//					}
-//				}
-//			}
-//		}
+		// Jaque Mate a las Blancas, negras ganan
+		boolean jaqueMateBlancas = false;
+		Coordenada posicionReyBlanco = null;
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor() == Color.BLANCA) {
+					posicionReyBlanco = new Coordenada(i, j);
+				}
+
+			}
+		}
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (!(tablero[i][j].getPieza() instanceof NoPieza)
+						&& tablero[i][j].getPieza().getColor() == Color.NEGRA) {
+					jaqueMateBlancas = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+							new Coordenada(posicionReyBlanco.getFila(), posicionReyBlanco.getColumna()),
+							tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+					if (jaqueMateBlancas) {
+						System.out.println("Las blancas han perdido, ganan las negras");
+						System.out.println(" ___            __   __        __        ___             /  /");
+						System.out.println("|__  |\\ | |__| /  \\ |__)  /\\  |__) |  | |__  |\\ |  /\\   /  / ");
+						System.out.println("|___ | \\| |  | \\__/ |  \\ /~~\\ |__) \\__/ |___ | \\| /~~\\ .  .  ");
+						System.out.println("                                                             ");
+						return true;
+					}
+				}
+			}
+		}
+
+		// Jaque Mate de las Negras, blancas pierden
+		boolean jaqueMateNegras = false;
+		Coordenada posicionReyNegro = null;
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor() == Color.NEGRA) {
+					posicionReyNegro = new Coordenada(i, j);
+				}
+
+			}
+		}
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (!(tablero[i][j].getPieza() instanceof NoPieza)
+						&& tablero[i][j].getPieza().getColor() == Color.BLANCA) {
+
+					jaqueMateNegras = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+							new Coordenada(posicionReyNegro.getFila(), posicionReyNegro.getColumna()),
+							tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
+					if (jaqueMateNegras) {
+						System.out.println("Las negras han perdido, ganan las blancas");
+						System.out.println(" ___            __   __        __        ___             /  /");
+						System.out.println("|__  |\\ | |__| /  \\ |__)  /\\  |__) |  | |__  |\\ |  /\\   /  / ");
+						System.out.println("|___ | \\| |  | \\__/ |  \\ /~~\\ |__) \\__/ |___ | \\| /~~\\ .  .  ");
+						System.out.println("                                                             ");
+						return true;
+					}
+
+				}
+			}
+		}
 		return false;
 	}
 
-	public void jaque() {
+	public void jaque(Jugador pJugadorQuePoneEnJaque) {
+		// Jaque
+		Color colorJugadorEnJaque=pJugadorQuePoneEnJaque.getColor()==Color.BLANCA?Color.NEGRA:Color.BLANCA;
+		Coordenada posicionRey = null;
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor() == colorJugadorEnJaque) {
+					posicionRey = new Coordenada(i, j);
+				}
+
+			}
+		}
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (!(tablero[i][j].getPieza() instanceof NoPieza)
+						&& tablero[i][j].getPieza().getColor() == pJugadorQuePoneEnJaque.getColor()) {
+					 if(tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+							new Coordenada(posicionRey.getFila(), posicionRey.getColumna()),
+							tablero[posicionRey.getFila()][posicionRey.getColumna()])) {
+						 System.out.println("Las piezas " + colorJugadorEnJaque + " estan en jaque");
+						 System.out.println(" __          __        __   __    /  /");
+						 System.out.println("/  ` |  | | |  \\  /\\  |  \\ /  \\  /  / ");
+						 System.out.println("\\__, \\__/ | |__/ /~~\\ |__/ \\__/ .  .  ");
+						 System.out.println("                                      ");
+						 return;
+					 }
+				}
+			}
+		}
 
 	}
 
 	public boolean reyAhogado() {
+		// Rey Ahogado Blancas
+		boolean[] puedeComerReyBlanco = new boolean[8];
+		Coordenada posicionReyBlanco = null;
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor() == Color.BLANCA) {
+					posicionReyBlanco = new Coordenada(i, j);
+				}
+
+			}
+		}
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (!(tablero[i][j].getPieza() instanceof NoPieza)
+						&& tablero[i][j].getPieza().getColor() == Color.NEGRA) {
+					if (!puedeComerReyBlanco[0]) {
+						if (posicionReyBlanco.getFila() + 1 > 7) {
+							puedeComerReyBlanco[0] = true;
+						} else {
+							puedeComerReyBlanco[0] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyBlanco.getFila() + 1, posicionReyBlanco.getColumna()),
+									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+						}
+
+					}
+
+					if (!puedeComerReyBlanco[1]) {
+						if (posicionReyBlanco.getFila() - 1 < 0) {
+							puedeComerReyBlanco[1] = true;
+						} else {
+							puedeComerReyBlanco[1] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyBlanco.getFila() - 1, posicionReyBlanco.getColumna()),
+									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+						}
+
+					}
+
+					if (!puedeComerReyBlanco[2]) {
+						if (posicionReyBlanco.getColumna() + 1 > 7) {
+							puedeComerReyBlanco[2] = true;
+						} else {
+							puedeComerReyBlanco[2] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyBlanco.getFila(), posicionReyBlanco.getColumna() + 1),
+									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+						}
+					}
+
+					if (!puedeComerReyBlanco[3]) {
+						if (posicionReyBlanco.getColumna() - 1 < 0) {
+							puedeComerReyBlanco[3] = true;
+						} else {
+							puedeComerReyBlanco[3] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyBlanco.getFila(), posicionReyBlanco.getColumna() - 1),
+									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+						}
+					}
+
+					if (!puedeComerReyBlanco[4]) {
+						if (posicionReyBlanco.getColumna() - 1 < 0 || posicionReyBlanco.getFila() + 1 > 7) {
+							puedeComerReyBlanco[4] = true;
+						} else {
+							puedeComerReyBlanco[4] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyBlanco.getFila() + 1, posicionReyBlanco.getColumna() - 1),
+									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+						}
+					}
+
+					if (!puedeComerReyBlanco[5]) {
+						if (posicionReyBlanco.getColumna() + 1 > 7 || posicionReyBlanco.getFila() + 1 > 7) {
+							puedeComerReyBlanco[5] = true;
+						} else {
+							puedeComerReyBlanco[5] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyBlanco.getFila() + 1, posicionReyBlanco.getColumna() + 1),
+									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+						}
+					}
+
+					if (!puedeComerReyBlanco[6]) {
+						if (posicionReyBlanco.getColumna() + 1 > 7 || posicionReyBlanco.getFila() - 1 < 0) {
+							puedeComerReyBlanco[6] = true;
+						} else {
+							puedeComerReyBlanco[6] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyBlanco.getFila() - 1, posicionReyBlanco.getColumna() + 1),
+									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+						}
+					}
+
+					if (!puedeComerReyBlanco[7]) {
+						if (posicionReyBlanco.getColumna() - 1 < 0 || posicionReyBlanco.getFila() - 1 < 0) {
+							puedeComerReyBlanco[7] = true;
+						} else {
+							puedeComerReyBlanco[7] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyBlanco.getFila() - 1, posicionReyBlanco.getColumna() - 1),
+									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+						}
+					}
+				}
+			}
+		}
+		boolean blancasAhogadas = true;
+		for (boolean estaAhogado : puedeComerReyBlanco) {
+			blancasAhogadas = blancasAhogadas && estaAhogado;
+		}
+		if (blancasAhogadas) {
+			System.out.println("Las blancas tienen el rey ahogado, habeis quedado en tablas");
+			return true;
+		}
+
+		// Rey Ahogado Negras
+		boolean[] puedeComerReyNegro = new boolean[8];
+		Coordenada posicionReyNegro = null;
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor() == Color.NEGRA) {
+					posicionReyNegro = new Coordenada(i, j);
+				}
+
+			}
+		}
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				if (!(tablero[i][j].getPieza() instanceof NoPieza)
+						&& tablero[i][j].getPieza().getColor() == Color.BLANCA) {
+					if (!puedeComerReyNegro[0]) {
+						if (posicionReyNegro.getFila() + 1 > 7) {
+							puedeComerReyNegro[0] = true;
+						} else {
+							puedeComerReyNegro[0] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyNegro.getFila() + 1, posicionReyNegro.getColumna()),
+									tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
+						}
+
+					}
+
+					if (!puedeComerReyNegro[1]) {
+						if (posicionReyNegro.getFila() - 1 < 0) {
+							puedeComerReyNegro[1] = true;
+						} else {
+							puedeComerReyNegro[1] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyNegro.getFila() - 1, posicionReyNegro.getColumna()),
+									tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
+						}
+
+					}
+
+					if (!puedeComerReyNegro[2]) {
+						if (posicionReyNegro.getColumna() + 1 > 7) {
+							puedeComerReyNegro[2] = true;
+						} else {
+							puedeComerReyNegro[2] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyNegro.getFila(), posicionReyNegro.getColumna() + 1),
+									tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
+						}
+					}
+
+					if (!puedeComerReyNegro[3]) {
+						if (posicionReyNegro.getColumna() - 1 < 0) {
+							puedeComerReyNegro[3] = true;
+						} else {
+							puedeComerReyNegro[3] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyNegro.getFila(), posicionReyNegro.getColumna() - 1),
+									tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
+						}
+					}
+
+					if (!puedeComerReyNegro[4]) {
+						if (posicionReyNegro.getColumna() - 1 < 0 || posicionReyNegro.getFila() + 1 > 7) {
+							puedeComerReyNegro[4] = true;
+						} else {
+							puedeComerReyNegro[4] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyNegro.getFila() + 1, posicionReyNegro.getColumna() - 1),
+									tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
+						}
+					}
+
+					if (!puedeComerReyNegro[5]) {
+						if (posicionReyNegro.getColumna() + 1 > 7 || posicionReyNegro.getFila() + 1 > 7) {
+							puedeComerReyNegro[5] = true;
+						} else {
+							puedeComerReyNegro[5] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyNegro.getFila() + 1, posicionReyNegro.getColumna() + 1),
+									tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
+						}
+					}
+
+					if (!puedeComerReyNegro[6]) {
+						if (posicionReyNegro.getColumna() + 1 > 7 || posicionReyNegro.getFila() - 1 < 0) {
+							puedeComerReyNegro[6] = true;
+						} else {
+							puedeComerReyNegro[6] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyNegro.getFila() - 1, posicionReyNegro.getColumna() + 1),
+									tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
+						}
+					}
+
+					if (!puedeComerReyNegro[7]) {
+						if (posicionReyNegro.getColumna() - 1 < 0 || posicionReyNegro.getFila() - 1 < 0) {
+							puedeComerReyNegro[7] = true;
+						} else {
+							puedeComerReyNegro[7] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+									new Coordenada(posicionReyNegro.getFila() - 1, posicionReyNegro.getColumna() - 1),
+									tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
+						}
+					}
+				}
+			}
+		}
+		boolean negrasAhogadas = true;
+		for (boolean estaAhogado : puedeComerReyNegro) {
+			negrasAhogadas = negrasAhogadas && estaAhogado;
+		}
+		if (negrasAhogadas) {
+			System.out.println("Las negras tienen el rey ahogado, habeis quedado en tablas");
+			return true;
+		}
 		return false;
 	}
 
 	public void coronacion() {
 		for (int i = 0; i < tablero.length; i++) {
-			if(tablero[0][i].getPieza() instanceof Peon && tablero[0][i].getPieza().getColor()==Color.BLANCA) {
+			if (tablero[0][i].getPieza() instanceof Peon && tablero[0][i].getPieza().getColor() == Color.BLANCA) {
 				tablero[0][i].setPieza(new Dama(Color.BLANCA));
 			}
 		}
 		for (int i = 0; i < tablero.length; i++) {
-			if(tablero[7][i].getPieza() instanceof Peon && tablero[0][i].getPieza().getColor()==Color.NEGRA) {
+			if (tablero[7][i].getPieza() instanceof Peon && tablero[0][i].getPieza().getColor() == Color.NEGRA) {
 				tablero[7][i].setPieza(new Dama(Color.NEGRA));
 			}
 		}
@@ -166,7 +398,7 @@ public class Tablero {
 			for (int i = 0; i < tablero.length; i++) {
 				for (int j = 0; j < tablero[i].length; j++) {
 					if (tablero[i][j].getPieza().getNumeroPieza() == seleccion) {
-						return new Coordenada ( i, j );
+						return new Coordenada(i, j);
 					}
 				}
 			}
@@ -205,11 +437,13 @@ public class Tablero {
 		System.out.println("Se va a mover esta pieza: " + piezaMover.visualizarPieza() + piezaMover.getNumeroPieza());
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
-				puedeMoverse[i][j] = piezaMover.puedeMover(new Coordenada(posicionPiezaMover.getFila(), posicionPiezaMover.getColumna()), new Coordenada(i, j),
-						tablero[i][j]);
+				puedeMoverse[i][j] = piezaMover.puedeMover(
+						new Coordenada(posicionPiezaMover.getFila(), posicionPiezaMover.getColumna()),
+						new Coordenada(i, j), tablero[i][j]);
 				if (!puedeMoverse[i][j]) {
-					puedeMoverse[i][j] = piezaMover.puedeComer(new Coordenada(posicionPiezaMover.getFila(), posicionPiezaMover.getColumna()), new Coordenada( i, j),
-							tablero[i][j]);
+					puedeMoverse[i][j] = piezaMover.puedeComer(
+							new Coordenada(posicionPiezaMover.getFila(), posicionPiezaMover.getColumna()),
+							new Coordenada(i, j), tablero[i][j]);
 				}
 			}
 		}
@@ -230,7 +464,8 @@ public class Tablero {
 				for (int j = 0; j < tablero[i].length; j++) {
 					if (tablero[i][j].getPieza().getNumeroPieza() == seleccion) {
 						piezaMover.mover(tablero[i][j]);
-						tablero[posicionPiezaMover.getFila()][posicionPiezaMover.getColumna()].setPieza(new NoPieza(Color.BLANCA));
+						tablero[posicionPiezaMover.getFila()][posicionPiezaMover.getColumna()]
+								.setPieza(new NoPieza(Color.BLANCA));
 						movido = true;
 					}
 				}

@@ -2,6 +2,8 @@ package org.pmoo.ajedrez;
 
 import java.util.Random;
 
+import sun.tools.jconsole.Tab;
+
 
 
 public class Ajedrez {
@@ -83,6 +85,6 @@ public class Ajedrez {
 			haMovido=miTablero.seleccionarMovimiento();	
 		}
 		
-		
+		Tablero.getMiTablero().jaque(jugadorTurno);
 	}
 }
