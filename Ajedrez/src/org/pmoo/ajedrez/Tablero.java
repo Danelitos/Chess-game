@@ -1,5 +1,7 @@
 package org.pmoo.ajedrez;
 
+import java.io.BufferedOutputStream;
+
 public class Tablero {
 	// Atributos
 	private static Tablero miTablero;
@@ -56,67 +58,247 @@ public class Tablero {
 
 	}
 
-	public boolean jaqueMate() {
-		// Jaque Mate a las Blancas, negras ganan
-		boolean jaqueMateBlancas = false;
-		Coordenada posicionReyBlanco = null;
-		for (int i = 0; i < tablero.length; i++) {
-			for (int j = 0; j < tablero[i].length; j++) {
-				if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor() == Color.BLANCA) {
-					posicionReyBlanco = new Coordenada(i, j);
-				}
-
-			}
-		}
-		for (int i = 0; i < tablero.length; i++) {
-			for (int j = 0; j < tablero[i].length; j++) {
-				if (!(tablero[i][j].getPieza() instanceof NoPieza)
-						&& tablero[i][j].getPieza().getColor() == Color.NEGRA) {
-					jaqueMateBlancas = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
-							new Coordenada(posicionReyBlanco.getFila(), posicionReyBlanco.getColumna()),
-							tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
-					if (jaqueMateBlancas) {
-						System.out.println("Las blancas han perdido, ganan las negras");
-						System.out.println(" ___            __   __        __        ___             /  /");
-						System.out.println("|__  |\\ | |__| /  \\ |__)  /\\  |__) |  | |__  |\\ |  /\\   /  / ");
-						System.out.println("|___ | \\| |  | \\__/ |  \\ /~~\\ |__) \\__/ |___ | \\| /~~\\ .  .  ");
-						System.out.println("                                                             ");
-						return true;
-					}
-				}
-			}
-		}
+//	public boolean jaqueMate() {
+//		// Jaque Mate a las Blancas, negras ganan
+//		boolean[] puedeMover=new boolean[8];
+//		boolean[] puedeComerReyBlanco=new boolean[8];
+//		boolean jaqueMateBlancas = false;
+//		Coordenada posicionReyBlanco = null;
+//		for (int i = 0; i < tablero.length; i++) {
+//			for (int j = 0; j < tablero[i].length; j++) {
+//				if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor() == Color.BLANCA) {
+//					posicionReyBlanco = new Coordenada(i, j);
+//					if (posicionReyBlanco.getFila() + 1 > 7) {
+//						puedeMover[0]=false;
+//					}
+//					else {
+//						puedeMover[0]=tablero[i][j].getPieza().puedeMover(new Coordenada(i, j),new Coordenada( i+1 ,j), tablero[i+1][j]);
+//					}
+//					if (posicionReyBlanco.getFila() - 1 < 0) {
+//						puedeMover[1]=false;
+//					}
+//					else {
+//						puedeMover[1]=tablero[i][j].getPieza().puedeMover(new Coordenada(i, j),new Coordenada( i-1 ,j), tablero[i-1][j]);
+//					}
+//					
+//					if (posicionReyBlanco.getColumna() + 1 > 7) {
+//						puedeMover[2]=false;
+//					}
+//					else {
+//						puedeMover[2]=tablero[i][j].getPieza().puedeMover(new Coordenada(i, j),new Coordenada( i ,j+1), tablero[i][j+1]);
+//					}
+//					
+//					if (posicionReyBlanco.getColumna() - 1 < 0) {
+//						puedeMover[3]=false;
+//					}
+//					else {
+//						puedeMover[3]=tablero[i][j].getPieza().puedeMover(new Coordenada(i, j),new Coordenada( i ,j-1), tablero[i][j-1]);
+//					}
+//					
+//					if (posicionReyBlanco.getColumna() - 1 < 0 || posicionReyBlanco.getFila() + 1 > 7) {
+//						puedeMover[4]=false;
+//					}
+//					else {
+//						puedeMover[4]=tablero[i][j].getPieza().puedeMover(new Coordenada(i, j),new Coordenada( i+1 ,j-1), tablero[i+1][j-1]);
+//					}
+//					
+//					if (posicionReyBlanco.getColumna() + 1 > 7 || posicionReyBlanco.getFila() + 1 > 7) {
+//						puedeMover[5]=false;
+//					}
+//					else {
+//						puedeMover[5]=tablero[i][j].getPieza().puedeMover(new Coordenada(i, j),new Coordenada( i+1 ,j+1), tablero[i+1][j+1]);
+//					}
+//					
+//					if (posicionReyBlanco.getColumna() + 1 > 7 || posicionReyBlanco.getFila() - 1 < 0) {
+//						puedeMover[6]=false;
+//					}
+//					else {
+//						puedeMover[6]=tablero[i][j].getPieza().puedeMover(new Coordenada(i, j),new Coordenada( i-1 ,j+1), tablero[i-1][j+1]);
+//					}
+//					
+//					if (posicionReyBlanco.getColumna() - 1 < 0 || posicionReyBlanco.getFila() - 1 < 0) {
+//						puedeMover[7]=false;
+//					}
+//					else {
+//						puedeMover[7]=tablero[i][j].getPieza().puedeMover(new Coordenada(i, j),new Coordenada( i-1 ,j-1), tablero[i-1][j-1]);
+//					}
+//				}
+//
+//			}
+//		}
+//		for (int i = 0; i < tablero.length; i++) {
+//			for (int j = 0; j < tablero[i].length; j++) {
+//				if (!(tablero[i][j].getPieza() instanceof NoPieza)
+//						&& tablero[i][j].getPieza().getColor() == Color.NEGRA) {
+//					if(!jaqueMateBlancas) {
+//						jaqueMateBlancas = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+//								new Coordenada(posicionReyBlanco.getFila(), posicionReyBlanco.getColumna()),
+//								tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+//					}
+//					if (!puedeComerReyBlanco[0]) {
+//						if (posicionReyBlanco.getFila() + 1 > 7) {
+//							puedeComerReyBlanco[0] = true;
+//						} else {
+//							puedeComerReyBlanco[0] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+//									new Coordenada(posicionReyBlanco.getFila() + 1, posicionReyBlanco.getColumna()),
+//									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+//						}
+//					}
+//
+//					if (!puedeComerReyBlanco[1]) {
+//						if (posicionReyBlanco.getFila() - 1 < 0) {
+//							puedeComerReyBlanco[1] = true;
+//						} else {
+//							puedeComerReyBlanco[1] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+//									new Coordenada(posicionReyBlanco.getFila() - 1, posicionReyBlanco.getColumna()),
+//									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+//						}
+//
+//					}
+//
+//					if (!puedeComerReyBlanco[2]) {
+//						if (posicionReyBlanco.getColumna() + 1 > 7) {
+//							puedeComerReyBlanco[2] = true;
+//						} else {
+//							puedeComerReyBlanco[2] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+//									new Coordenada(posicionReyBlanco.getFila(), posicionReyBlanco.getColumna() + 1),
+//									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+//						}
+//					}
+//
+//					if (!puedeComerReyBlanco[3]) {
+//						if (posicionReyBlanco.getColumna() - 1 < 0) {
+//							puedeComerReyBlanco[3] = true;
+//						} else {
+//							puedeComerReyBlanco[3] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+//									new Coordenada(posicionReyBlanco.getFila(), posicionReyBlanco.getColumna() - 1),
+//									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+//						}
+//					}
+//
+//					if (!puedeComerReyBlanco[4]) {
+//						if (posicionReyBlanco.getColumna() - 1 < 0 || posicionReyBlanco.getFila() + 1 > 7) {
+//							puedeComerReyBlanco[4] = true;
+//						} else {
+//							puedeComerReyBlanco[4] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+//									new Coordenada(posicionReyBlanco.getFila() + 1, posicionReyBlanco.getColumna() - 1),
+//									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+//						}
+//					}
+//
+//					if (!puedeComerReyBlanco[5]) {
+//						if (posicionReyBlanco.getColumna() + 1 > 7 || posicionReyBlanco.getFila() + 1 > 7) {
+//							puedeComerReyBlanco[5] = true;
+//						} else {
+//							puedeComerReyBlanco[5] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+//									new Coordenada(posicionReyBlanco.getFila() + 1, posicionReyBlanco.getColumna() + 1),
+//									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+//						}
+//					}
+//
+//					if (!puedeComerReyBlanco[6]) {
+//						if (posicionReyBlanco.getColumna() + 1 > 7 || posicionReyBlanco.getFila() - 1 < 0) {
+//							puedeComerReyBlanco[6] = true;
+//						} else {
+//							puedeComerReyBlanco[6] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+//									new Coordenada(posicionReyBlanco.getFila() - 1, posicionReyBlanco.getColumna() + 1),
+//									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+//						}
+//					}
+//
+//					if (!puedeComerReyBlanco[7]) {
+//						if (posicionReyBlanco.getColumna() - 1 < 0 || posicionReyBlanco.getFila() - 1 < 0) {
+//							puedeComerReyBlanco[7] = true;
+//						} else {
+//							puedeComerReyBlanco[7] = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+//									new Coordenada(posicionReyBlanco.getFila() - 1, posicionReyBlanco.getColumna() - 1),
+//									tablero[posicionReyBlanco.getFila()][posicionReyBlanco.getColumna()]);
+//						}
+//					}
+//				}
+//			}
+//		}
+//		for(int i=0; i<8;i++) {
+//			if(jaqueMateBlancas) {
+//				if(puedeMover[i] && !puedeComerReyBlanco[i]) {
+//					jaqueMateBlancas=false;
+//				}
+//			}
+//		}
+//		if(jaqueMateBlancas) {
+//			System.out.println("Las blancas han perdido, ganan las negras");
+//			System.out.println(" ___            __   __        __        ___             /  /");
+//			System.out.println("|__  |\\ | |__| /  \\ |__)  /\\  |__) |  | |__  |\\ |  /\\   /  / ");
+//			System.out.println("|___ | \\| |  | \\__/ |  \\ /~~\\ |__) \\__/ |___ | \\| /~~\\ .  .  ");
+//			System.out.println("                                                             ");
+//			return true;
+//		}
 
 		// Jaque Mate de las Negras, blancas pierden
-		boolean jaqueMateNegras = false;
-		Coordenada posicionReyNegro = null;
+//		boolean jaqueMateNegras = false;
+//		Coordenada posicionReyNegro = null;
+//		for (int i = 0; i < tablero.length; i++) {
+//			for (int j = 0; j < tablero[i].length; j++) {
+//				if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor() == Color.NEGRA) {
+//					posicionReyNegro = new Coordenada(i, j);
+//				}
+//
+//			}
+//		}
+//		for (int i = 0; i < tablero.length; i++) {
+//			for (int j = 0; j < tablero[i].length; j++) {
+//				if (!(tablero[i][j].getPieza() instanceof NoPieza)
+//						&& tablero[i][j].getPieza().getColor() == Color.BLANCA) {
+//
+//					jaqueMateNegras = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
+//							new Coordenada(posicionReyNegro.getFila(), posicionReyNegro.getColumna()),
+//							tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
+//					if (jaqueMateNegras) {
+//						System.out.println("Las negras han perdido, ganan las blancas");
+//						System.out.println(" ___            __   __        __        ___             /  /");
+//						System.out.println("|__  |\\ | |__| /  \\ |__)  /\\  |__) |  | |__  |\\ |  /\\   /  / ");
+//						System.out.println("|___ | \\| |  | \\__/ |  \\ /~~\\ |__) \\__/ |___ | \\| /~~\\ .  .  ");
+//						System.out.println("                                                             ");
+//						return true;
+//					}
+//
+//				}
+//			}
+//		}
+//		return false;
+//	}
+	
+	public boolean jaqueMate() {
+		boolean seHanComidoReyNegro=true;
+		boolean seHanComidoReyBlanco=true;
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
-				if (tablero[i][j].getPieza() instanceof Rey && tablero[i][j].getPieza().getColor() == Color.NEGRA) {
-					posicionReyNegro = new Coordenada(i, j);
-				}
-
-			}
-		}
-		for (int i = 0; i < tablero.length; i++) {
-			for (int j = 0; j < tablero[i].length; j++) {
-				if (!(tablero[i][j].getPieza() instanceof NoPieza)
-						&& tablero[i][j].getPieza().getColor() == Color.BLANCA) {
-
-					jaqueMateNegras = tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
-							new Coordenada(posicionReyNegro.getFila(), posicionReyNegro.getColumna()),
-							tablero[posicionReyNegro.getFila()][posicionReyNegro.getColumna()]);
-					if (jaqueMateNegras) {
-						System.out.println("Las negras han perdido, ganan las blancas");
-						System.out.println(" ___            __   __        __        ___             /  /");
-						System.out.println("|__  |\\ | |__| /  \\ |__)  /\\  |__) |  | |__  |\\ |  /\\   /  / ");
-						System.out.println("|___ | \\| |  | \\__/ |  \\ /~~\\ |__) \\__/ |___ | \\| /~~\\ .  .  ");
-						System.out.println("                                                             ");
-						return true;
+				if(tablero[i][j].getPieza() instanceof Rey) {
+					if(seHanComidoReyNegro && tablero[i][j].getPieza().getColor()==Color.NEGRA) {
+						seHanComidoReyNegro=false;
+					}
+					if(seHanComidoReyBlanco && tablero[i][j].getPieza().getColor()==Color.BLANCA) {
+						seHanComidoReyBlanco=false;
 					}
 
 				}
 			}
+		}
+		if(seHanComidoReyNegro) {
+			System.out.println("Las negras han perdido, ganan las blancas");
+			System.out.println(" ___            __   __        __        ___             /  /");
+			System.out.println("|__  |\\ | |__| /  \\ |__)  /\\  |__) |  | |__  |\\ |  /\\   /  / ");
+			System.out.println("|___ | \\| |  | \\__/ |  \\ /~~\\ |__) \\__/ |___ | \\| /~~\\ .  .  ");
+			System.out.println("                                                             ");
+			return true;
+		}
+		if(seHanComidoReyBlanco) {
+			System.out.println("Las blancas han perdido, ganan las negras");
+			System.out.println(" ___            __   __        __        ___             /  /");
+			System.out.println("|__  |\\ | |__| /  \\ |__)  /\\  |__) |  | |__  |\\ |  /\\   /  / ");
+			System.out.println("|___ | \\| |  | \\__/ |  \\ /~~\\ |__) \\__/ |___ | \\| /~~\\ .  .  ");
+			System.out.println("                                                             ");
+			return true;
 		}
 		return false;
 	}
@@ -133,6 +315,9 @@ public class Tablero {
 
 			}
 		}
+		if(posicionRey==null) {
+			return;
+		}
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 				if (!(tablero[i][j].getPieza() instanceof NoPieza)
@@ -140,11 +325,11 @@ public class Tablero {
 					 if(tablero[i][j].getPieza().puedeComer(new Coordenada(i, j),
 							new Coordenada(posicionRey.getFila(), posicionRey.getColumna()),
 							tablero[posicionRey.getFila()][posicionRey.getColumna()])) {
-						 System.out.println("Las piezas " + colorJugadorEnJaque + " estan en jaque");
-						 System.out.println(" __          __        __   __    /  /");
-						 System.out.println("/  ` |  | | |  \\  /\\  |  \\ /  \\  /  / ");
-						 System.out.println("\\__, \\__/ | |__/ /~~\\ |__/ \\__/ .  .  ");
-						 System.out.println("                                      ");
+						 System.err.println("Las piezas " + (colorJugadorEnJaque==Color.NEGRA?"negras":"blancas") + " estan en jaque");
+						 System.err.println(" __          __        __   __    /  /");
+						 System.err.println("/  ` |  | | |  \\  /\\  |  \\ /  \\  /  / ");
+						 System.err.println("\\__, \\__/ | |__/ /~~\\ |__/ \\__/ .  .  ");
+						 System.err.println("                                      ");
 						 return;
 					 }
 				}
@@ -410,23 +595,44 @@ public class Tablero {
 
 	public void imprimirTableroConNumeros(Jugador pJugador) {
 		int cont = 1;
-		System.out.println("\n\n ————————————————————————————————————");
+		System.out.println("\n\n ————————————————————————————————————————————————————————");
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 				Pieza p = tablero[i][j].getPieza();
+				if(j==5 && !(p instanceof NoPieza)) {
+					System.out.print(" ");
+				}
+				if(j==4 && !(p instanceof NoPieza)) {
+					System.out.print(" ");
+				}
+				if(j==3 && !(p instanceof NoPieza)) {
+					System.out.print(" ");
+				}
+				if(j==7 && !(p instanceof NoPieza)) {
+					System.out.print(" ");
+				}
+				if(j==2 && !(p instanceof NoPieza)) {
+					System.out.print(" ");
+				}
 				if (!(p instanceof NoPieza) && p.getColor() == pJugador.getColor()) {
-					System.out.print(" | ");
+					System.out.print("| ");
 					tablero[i][j].imprimirPieza();
 					System.out.print(cont);
+					System.out.print(" ");
+					if((int)cont/10==0) {
+						System.out.print(" ");
+					}
+					
 					p.setNumeroPieza(cont);
 					cont++;
 				} else {
-					System.out.print("  | ");
+					System.out.print("|  ");
 					tablero[i][j].imprimirPieza();
+					System.out.print("  ");
 				}
 			}
-			System.out.println(" | ");
-			System.out.println(" ————————————————————————————————————");
+			System.out.println("|  ");
+			System.out.println(" ————————————————————————————————————————————————————————");
 		}
 	}
 
@@ -481,24 +687,44 @@ public class Tablero {
 
 	private void imprimirMovimientosConNumeros(boolean[][] pPuedeMoverse) {
 		int cont = 1;
-		System.out.println("\n\n ————————————————————————————————————");
+		System.out.println("\n\n ————————————————————————————————————————————————————————");
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero[i].length; j++) {
 				Pieza p = tablero[i][j].getPieza();
+				if(j==5 && !(p instanceof NoPieza)) {
+					System.out.print(" ");
+				}
+				if(j==4 && !(p instanceof NoPieza)) {
+					System.out.print(" ");
+				}
+				if(j==3 && !(p instanceof NoPieza)) {
+					System.out.print(" ");
+				}
+				if(j==7 && !(p instanceof NoPieza)) {
+					System.out.print(" ");
+				}
+				if(j==2 && !(p instanceof NoPieza)) {
+					System.out.print(" ");
+				}
 				p.resetearNumeroPieza();
 				if (pPuedeMoverse[i][j]) {
 					System.out.print(" | ");
 					tablero[i][j].imprimirPieza();
 					System.out.print(cont);
+					System.out.print(" ");
+					if((int)cont/10==0) {
+						System.out.print(" ");
+					}
 					p.setNumeroPieza(cont);
 					cont++;
 				} else {
-					System.out.print("  | ");
+					System.out.print("|  ");
 					tablero[i][j].imprimirPieza();
+					System.out.print("  ");
 				}
 			}
-			System.out.println(" | ");
-			System.out.println(" ————————————————————————————————————");
+			System.out.println("|  ");
+			System.out.println(" ————————————————————————————————————————————————————————");
 		}
 	}
 
