@@ -16,8 +16,8 @@ public class Torre extends Pieza {
 	}
 
 	// Metodos
-	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
-		if (casillaDestino.getPieza() instanceof NoPieza) {
+	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla pCasillaDestino) {
+		if (pCasillaDestino.getPieza() instanceof NoPieza) {
 			// Arriba
 			if (pCoordenadaInicio.getFila() > pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
 				for (int i = 1; i < pCoordenadaInicio.getFila()-pCoordenadaDestino.getFila(); i++) {

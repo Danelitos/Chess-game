@@ -15,8 +15,8 @@ public class Dama extends Pieza {
 	}
 	
 	//Metodos
-	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
-		if (casillaDestino.getPieza() instanceof NoPieza) {
+	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla pCasillaDestino) {
+		if (pCasillaDestino.getPieza() instanceof NoPieza) {
 			// Abajo a la derecha
 			if (pCoordenadaInicio.getFila() < pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() < pCoordenadaDestino.getColumna()) {
 				if((pCoordenadaDestino.getFila() - pCoordenadaInicio.getFila())==(pCoordenadaDestino.getColumna()-pCoordenadaInicio.getColumna())) {

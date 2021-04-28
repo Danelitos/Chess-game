@@ -2,11 +2,18 @@ package org.pmoo.ajedrez;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Field;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+
 
 public class TableroTest {
 
@@ -48,17 +55,17 @@ public class TableroTest {
 
 	@Test
 	public void testJaqueMate() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-//		//Jaque Mate a la negras
-//		Casilla[][] pierdenNegras= this.nuevoTablero();
-//		pierdenNegras[4][2].setPieza(new Alfil(Color.BLANCA));
-//		pierdenNegras[3][7].setPieza(new Dama(Color.BLANCA));
-//		pierdenNegras[0][4].setPieza(new Rey(Color.NEGRA));
-//		pierdenNegras[7][7].setPieza(new Rey(Color.BLANCA));
-//		pierdenNegras[0][3].setPieza(new Dama(Color.NEGRA));
-//		pierdenNegras[0][5].setPieza(new Alfil(Color.NEGRA));
-//		this.copiarTablero(pierdenNegras);
-//		assertTrue(Tablero.getMiTablero().jaqueMate());
-		//Jaque Mate a la blancas
+		//No jaque Mate a la negras
+		Casilla[][] pierdenNegras= this.nuevoTablero();
+		pierdenNegras[4][2].setPieza(new Alfil(Color.BLANCA));
+		pierdenNegras[3][7].setPieza(new Dama(Color.BLANCA));
+		pierdenNegras[0][4].setPieza(new Rey(Color.NEGRA));
+		pierdenNegras[7][7].setPieza(new Rey(Color.BLANCA));
+		pierdenNegras[0][3].setPieza(new Dama(Color.NEGRA));
+		pierdenNegras[0][5].setPieza(new Alfil(Color.NEGRA));
+		this.copiarTablero(pierdenNegras);
+		assertFalse(Tablero.getMiTablero().jaqueMate());
+		//No jaque Mate a la blancas
 		Casilla[][] pierdenBlancas= this.nuevoTablero();
 		pierdenBlancas[4][2].setPieza(new Alfil(Color.NEGRA));
 		pierdenBlancas[3][7].setPieza(new Dama(Color.NEGRA));
@@ -67,12 +74,81 @@ public class TableroTest {
 		pierdenBlancas[0][3].setPieza(new Dama(Color.BLANCA));
 		pierdenBlancas[0][5].setPieza(new Alfil(Color.BLANCA));
 		this.copiarTablero(pierdenBlancas);
+		assertFalse(Tablero.getMiTablero().jaqueMate());
+		//Jaque Mate a la negras
+		pierdenNegras= this.nuevoTablero();
+		pierdenNegras[4][2].setPieza(new Alfil(Color.BLANCA));
+		pierdenNegras[3][7].setPieza(new Dama(Color.BLANCA));
+		pierdenNegras[7][7].setPieza(new Rey(Color.BLANCA));
+		pierdenNegras[0][3].setPieza(new Dama(Color.NEGRA));
+		pierdenNegras[0][5].setPieza(new Alfil(Color.NEGRA));
+		this.copiarTablero(pierdenNegras);
+		assertTrue(Tablero.getMiTablero().jaqueMate());
+		//Jaque Mate a la blancas
+		pierdenBlancas= this.nuevoTablero();
+		pierdenBlancas[4][2].setPieza(new Alfil(Color.NEGRA));
+		pierdenBlancas[3][7].setPieza(new Dama(Color.NEGRA));
+		pierdenBlancas[7][7].setPieza(new Rey(Color.NEGRA));
+		pierdenBlancas[0][3].setPieza(new Dama(Color.BLANCA));
+		pierdenBlancas[0][5].setPieza(new Alfil(Color.BLANCA));
+		this.copiarTablero(pierdenBlancas);
 		assertTrue(Tablero.getMiTablero().jaqueMate());
 	}
 
 	@Test
-	public void testJaque() {
+	public void testJaque() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		//Jaque a la negras
+		Casilla[][] pierdenNegras= this.nuevoTablero();
+		pierdenNegras[4][2].setPieza(new Alfil(Color.BLANCA));
+		pierdenNegras[3][7].setPieza(new Dama(Color.BLANCA));
+		pierdenNegras[0][4].setPieza(new Rey(Color.NEGRA));
+		pierdenNegras[7][7].setPieza(new Rey(Color.BLANCA));
+		pierdenNegras[0][3].setPieza(new Dama(Color.NEGRA));
+		pierdenNegras[0][5].setPieza(new Alfil(Color.NEGRA));
+//		ByteArrayOutputStream miByte= new ByteArrayOutputStream();
+//		PrintStream syserr= System.err;
+//		PrintStream test= new PrintStream(miByte);
+//		System.setErr(test);
+		this.copiarTablero(pierdenNegras);
+		Tablero.getMiTablero().jaque(new Jugador("Manolo",Color.BLANCA));
+//		assertEquals("Las piezas negras", miByte.toString().substring(0,17));
+		//Jaque a la blancas
+		Casilla[][] pierdenBlancas= this.nuevoTablero();
+		pierdenBlancas[4][2].setPieza(new Alfil(Color.NEGRA));
+		pierdenBlancas[3][7].setPieza(new Dama(Color.NEGRA));
+		pierdenBlancas[0][4].setPieza(new Rey(Color.BLANCA));
+		pierdenBlancas[7][7].setPieza(new Rey(Color.NEGRA));
+		pierdenBlancas[0][3].setPieza(new Dama(Color.BLANCA));
+		pierdenBlancas[0][5].setPieza(new Alfil(Color.BLANCA));
+		this.copiarTablero(pierdenBlancas);
+		Tablero.getMiTablero().jaque(new Jugador("Maialen",Color.NEGRA));
+//		miByte= new ByteArrayOutputStream();
+//		test= new PrintStream(miByte);
+//		System.setErr(test);
+//		System.setErr(syserr);
+//		assertEquals("Las piezas blancas", miByte.toString().substring(0,17));
 		
+		//No jaque a la negras
+		pierdenNegras= this.nuevoTablero();
+		pierdenNegras[4][2].setPieza(new Alfil(Color.BLANCA));
+		pierdenNegras[3][7].setPieza(new Dama(Color.BLANCA));
+		pierdenNegras[0][0].setPieza(new Rey(Color.NEGRA));
+		pierdenNegras[7][7].setPieza(new Rey(Color.BLANCA));
+		pierdenNegras[0][3].setPieza(new Dama(Color.NEGRA));
+		pierdenNegras[0][5].setPieza(new Alfil(Color.NEGRA));
+		this.copiarTablero(pierdenNegras);
+		Tablero.getMiTablero().jaque(new Jugador("Manolo",Color.BLANCA));
+		//No jaque a la blancas
+		pierdenBlancas= this.nuevoTablero();
+		pierdenBlancas[4][2].setPieza(new Alfil(Color.NEGRA));
+		pierdenBlancas[3][7].setPieza(new Dama(Color.NEGRA));
+		pierdenBlancas[0][0].setPieza(new Rey(Color.BLANCA));
+		pierdenBlancas[7][7].setPieza(new Rey(Color.NEGRA));
+		pierdenBlancas[0][3].setPieza(new Dama(Color.BLANCA));
+		pierdenBlancas[0][5].setPieza(new Alfil(Color.BLANCA));
+		this.copiarTablero(pierdenBlancas);
+		Tablero.getMiTablero().jaque(new Jugador("Maialen",Color.NEGRA));
+//		System.setErr(syserr);
 	}
 
 	@Test
@@ -128,29 +204,63 @@ public class TableroTest {
 		
 	}
 
-	@Test
-	public void testCoronacion() {
+	private Casilla getCasilla(Coordenada pCoordenada) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		Class<Tablero> tableroOriginal=Tablero.class;
+		Field tableroACambiar=tableroOriginal.getDeclaredField("tablero");
+		tableroACambiar.setAccessible(true);
+		Casilla[][] miTablero= (Casilla[][]) tableroACambiar.get(Tablero.getMiTablero());
+		Casilla casillaDevolver= miTablero[pCoordenada.getFila()][pCoordenada.getColumna()];
+		return casillaDevolver;
 		
+	}
+	
+	@Test
+	public void testCoronacion() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		//Coronacion negras
+//		Casilla[][] coronacionNegras= this.nuevoTablero();
+//		coronacionNegras[7][4].setPieza(new Peon(Color.NEGRA));
+//		coronacionNegras[7][7].setPieza(new Rey(Color.BLANCA));
+//		coronacionNegras[7][4]=null;
+//		coronacionNegras[0][0].setPieza(new Rey(Color.NEGRA));
+//		this.copiarTablero(coronacionNegras);
+//		Tablero.getMiTablero().coronacion();
+//		assertEquals(this.getCasilla(new Coordenada(7,4)).getPieza(),Dama.class);
+		//Coronacion blancas
+		Casilla[][] coronacionBlancas= this.nuevoTablero();
+		coronacionBlancas[0][4].setPieza(new Peon(Color.NEGRA));
+		coronacionBlancas[7][7].setPieza(new Rey(Color.BLANCA));
+		coronacionBlancas[0][0].setPieza(new Rey(Color.NEGRA));
+		this.copiarTablero(coronacionBlancas);
+		Tablero.getMiTablero().coronacion();
+		assertEquals(this.getCasilla(new Coordenada(0,4)).getPieza(),Dama.class);
+		//No coronacion negras
+//		coronacionNegras= this.nuevoTablero();
+//		coronacionNegras[5][4].setPieza(new Peon(Color.NEGRA));
+//		coronacionNegras[7][7].setPieza(new Rey(Color.BLANCA));
+//		coronacionNegras[0][0].setPieza(new Rey(Color.NEGRA));
+//		this.copiarTablero(coronacionNegras);
+//		Tablero.getMiTablero().coronacion();
+		//No coronacion blancas
+		coronacionBlancas= this.nuevoTablero();
+		coronacionBlancas[5][4].setPieza(new Peon(Color.NEGRA));
+		coronacionBlancas[7][7].setPieza(new Rey(Color.BLANCA));
+		coronacionBlancas[0][0].setPieza(new Rey(Color.NEGRA));
+		this.copiarTablero(coronacionBlancas);
+		Tablero.getMiTablero().coronacion();
 	}
 
 	@Test
-	public void testSeleccionarPieza() {
-		
-	}
-
-	@Test
-	public void testImprimirTableroConNumeros() {
-		
-	}
-
-	@Test
-	public void testSeleccionarMovimiento() {
-		
-	}
-
-	@Test
-	public void testCasillaVacia() {
-		
+	public void testCasillaVacia() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		//Casilla vacia
+		Casilla[][] casillaVacia= this.nuevoTablero();
+		casillaVacia[0][4].setPieza(new NoPieza());
+		this.copiarTablero(casillaVacia);
+		assertTrue(Tablero.getMiTablero().casillaVacia(new Coordenada(0,4)));
+		 //No casilla vacia
+		 casillaVacia= this.nuevoTablero();
+		 casillaVacia[0][4].setPieza(new Peon(Color.BLANCA));
+		 this.copiarTablero(casillaVacia);
+		 assertFalse(Tablero.getMiTablero().casillaVacia(new Coordenada(0,4)));
 	}
 
 }

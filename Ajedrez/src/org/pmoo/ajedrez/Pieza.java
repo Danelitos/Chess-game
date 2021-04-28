@@ -21,7 +21,7 @@ public class Pieza {
 		return piezaAImprimir;
 	}
 
-	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
+	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla pCasillaDestino) {
 		return false;
 	}
 

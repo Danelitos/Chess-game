@@ -16,14 +16,14 @@ public class Peon extends Pieza {
 	}
 
 	// Metodos
-	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
-		if (casillaDestino.getPieza() instanceof NoPieza) {
+	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla pCasillaDestino) {
+		if (pCasillaDestino.getPieza() instanceof NoPieza) {
 			if (this.color == Color.BLANCA) {
 				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
 					return true;
 				}
 				if (pCoordenadaInicio.getFila() == 6 && pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 2) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna() &&
-						Tablero.getMiTablero().casillaVacia(new Coordenada(5, pCoordenadaDestino.getColumna()))) {
+						Tablero.getMiTablero().casillaVacia(new Coordenada(4, pCoordenadaDestino.getColumna()))) {
 					return true;
 				}
 			} else {

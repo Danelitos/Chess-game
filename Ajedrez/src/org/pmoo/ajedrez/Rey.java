@@ -15,8 +15,8 @@ public class Rey extends Pieza {
 	}
 
 	// Metodos
-	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
-		if (casillaDestino.getPieza() instanceof NoPieza) {
+	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla pCasillaDestino) {
+		if (pCasillaDestino.getPieza() instanceof NoPieza) {
 			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
 				return true;
 			}
