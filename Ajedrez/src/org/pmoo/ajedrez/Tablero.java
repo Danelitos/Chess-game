@@ -353,8 +353,6 @@ public class Tablero {
 				tablero[0][i].setPieza(new Dama(Color.BLANCA));
 				System.out.println("El peon blanco se ha coronado");
 			}
-		}
-		for (int i = 0; i < tablero.length; i++) {
 			if (tablero[7][i].getPieza() instanceof Peon && tablero[7][i].getPieza().getColor() == Color.NEGRA) {
 				tablero[7][i].setPieza(new Dama(Color.NEGRA));
 				System.out.println("El peon negro se ha coronado");

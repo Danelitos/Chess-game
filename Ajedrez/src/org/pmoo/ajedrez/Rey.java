@@ -20,7 +20,7 @@ public class Rey extends Pieza {
 			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
 				return true;
 			}
-			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + -1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
+			if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() -1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
 				return true;
 			}
 			if (pCoordenadaInicio.getFila() == pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() + 1)) {
