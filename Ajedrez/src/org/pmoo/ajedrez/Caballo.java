@@ -7,10 +7,10 @@ public class Caballo extends Pieza {
 	//Constructor
 	public Caballo(Color pColor) {
 		super(pColor);
-		if(super.color.equals(Color.NEGRA))
-			piezaAImprimir=CABALLO_NEGRO;
+		if(pColor.equals(Color.NEGRA))
+			this.setPiezaAImprimir(CABALLO_NEGRO);
 		else {
-			piezaAImprimir=CABALLO_BLANCO;
+			this.setPiezaAImprimir(CABALLO_BLANCO);
 		}
 	}
 		
@@ -48,7 +48,7 @@ public class Caballo extends Pieza {
 
 	public boolean puedeComer(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (!(casillaDestino.getPieza() instanceof NoPieza)) {
-			if (this.color == Color.BLANCA && casillaDestino.getPieza().getColor()==Color.NEGRA) {
+			if (this.getColor() == Color.BLANCA && casillaDestino.getPieza().getColor()==Color.NEGRA) {
 				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +1)) {
 					return true;
 				}
@@ -75,7 +75,7 @@ public class Caballo extends Pieza {
 				}
 			}
 
-			else if (this.color == Color.NEGRA && casillaDestino.getPieza().getColor()==Color.BLANCA){
+			else if (this.getColor() == Color.NEGRA && casillaDestino.getPieza().getColor()==Color.BLANCA){
 				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 2) && pCoordenadaInicio.getColumna() == (pCoordenadaDestino.getColumna() +1)) {
 					return true;
 				}

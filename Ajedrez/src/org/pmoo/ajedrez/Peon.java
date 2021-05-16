@@ -4,21 +4,21 @@ public class Peon extends Pieza {
 
 	private final String PEON_NEGRO = "\u265F";
 	private final String PEON_BLANCO = "\u2659";
-
+	
 	// Constructor
 	public Peon(Color pColor) {
 		super(pColor);
-		if (super.color.equals(Color.NEGRA))
-			piezaAImprimir = PEON_NEGRO;
+		if (pColor.equals(Color.NEGRA))
+			this.setPiezaAImprimir(PEON_NEGRO);
 		else {
-			piezaAImprimir = PEON_BLANCO;
+			this.setPiezaAImprimir(PEON_BLANCO);
 		}
 	}
 
 	// Metodos
 	public boolean puedeMover(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla pCasillaDestino) {
 		if (pCasillaDestino.getPieza() instanceof NoPieza) {
-			if (this.color == Color.BLANCA) {
+			if (this.getColor() == Color.BLANCA) {
 				if (pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
 					return true;
 				}
@@ -41,7 +41,7 @@ public class Peon extends Pieza {
 
 	public boolean puedeComer(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (!(casillaDestino.getPieza() instanceof NoPieza)) {
-			if (this.color == Color.BLANCA) {
+			if (this.getColor() == Color.BLANCA) {
 				//comer arriba a la derecha
 				if (((pCoordenadaInicio.getFila() == (pCoordenadaDestino.getFila() + 1) && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna() + 1))
 						&& casillaDestino.getPieza().getColor() == Color.NEGRA) {

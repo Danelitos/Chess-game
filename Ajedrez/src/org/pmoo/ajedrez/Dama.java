@@ -7,10 +7,10 @@ public class Dama extends Pieza {
 	//Constructor
 	public Dama(Color pColor) {
 		super(pColor);
-		if(super.color.equals(Color.NEGRA))
-			piezaAImprimir=DAMA_NEGRA;
+		if(pColor.equals(Color.NEGRA))
+			this.setPiezaAImprimir(DAMA_NEGRA);
 		else {
-			piezaAImprimir=DAMA_BLANCA;
+			this.setPiezaAImprimir(DAMA_BLANCA);;
 		}
 	}
 	
@@ -105,7 +105,7 @@ public class Dama extends Pieza {
 
 	public boolean puedeComer(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (!(casillaDestino.getPieza() instanceof NoPieza)) {
-			if (this.color == Color.BLANCA && casillaDestino.getPieza().getColor()==Color.NEGRA) {
+			if (this.getColor() == Color.BLANCA && casillaDestino.getPieza().getColor()==Color.NEGRA) {
 				// Abajo a la derecha
 				if (pCoordenadaInicio.getFila() < pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() < pCoordenadaDestino.getColumna()) {
 					if((pCoordenadaDestino.getFila() - pCoordenadaInicio.getFila())==(pCoordenadaDestino.getColumna()-pCoordenadaInicio.getColumna())) {
@@ -189,7 +189,7 @@ public class Dama extends Pieza {
 				}
 			}
 
-			else if (this.color == Color.NEGRA && casillaDestino.getPieza().getColor()==Color.BLANCA){
+			else if (this.getColor() == Color.NEGRA && casillaDestino.getPieza().getColor()==Color.BLANCA){
 				// Abajo a la derecha
 				if (pCoordenadaInicio.getFila() < pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() < pCoordenadaDestino.getColumna()) {
 					if((pCoordenadaDestino.getFila() - pCoordenadaInicio.getFila())==(pCoordenadaDestino.getColumna()-pCoordenadaInicio.getColumna())) {

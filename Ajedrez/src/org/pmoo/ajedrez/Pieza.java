@@ -2,8 +2,8 @@ package org.pmoo.ajedrez;
 
 public class Pieza {
 	// Atributos
-	protected Color color;
-	protected String piezaAImprimir;
+	private Color color;
+	private String piezaAImprimir;
 	private int numeroPieza;
 
 	// Constructora
@@ -28,13 +28,16 @@ public class Pieza {
 	public Color getColor() {
 		return this.color;
 	}
+	public void setColor(Color pColor) {
+		this.color=pColor;
+	}
 
 	public int getNumeroPieza() {
 		return numeroPieza;
 	}
 
-	public void setNumeroPieza(int numeroPieza) {
-		this.numeroPieza = numeroPieza;
+	public void setNumeroPieza(int pNumeroPieza) {
+		this.numeroPieza = pNumeroPieza;
 	}
 	
 	public void resetearNumeroPieza() {
@@ -43,6 +46,9 @@ public class Pieza {
 	
 	public boolean puedeComer(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		return false;
+	}
+	public void setPiezaAImprimir(String pPiezaAImprimir) {
+		this.piezaAImprimir=pPiezaAImprimir;
 	}
 
 }

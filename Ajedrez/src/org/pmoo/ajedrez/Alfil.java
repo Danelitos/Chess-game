@@ -7,10 +7,10 @@ public class Alfil extends Pieza {
 	// Constructor
 	public Alfil(Color pColor) {
 		super(pColor);
-		if (super.color.equals(Color.NEGRA))
-			piezaAImprimir = ALFIL_NEGRO;
+		if (pColor.equals(Color.NEGRA))
+			this.setPiezaAImprimir(ALFIL_NEGRO);
 		else {
-			piezaAImprimir = ALFIL_BLANCO;
+			this.setPiezaAImprimir(ALFIL_BLANCO);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class Alfil extends Pieza {
 
 	public boolean puedeComer(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (!(casillaDestino.getPieza() instanceof NoPieza)) {
-			if (this.color == Color.BLANCA && casillaDestino.getPieza().getColor()==Color.NEGRA) {
+			if (this.getColor() == Color.BLANCA && casillaDestino.getPieza().getColor()==Color.NEGRA) {
 				// Abajo a la derecha
 				if (pCoordenadaInicio.getFila() < pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() < pCoordenadaDestino.getColumna()) {
 					if((pCoordenadaDestino.getFila() - pCoordenadaInicio.getFila())==(pCoordenadaDestino.getColumna()-pCoordenadaInicio.getColumna())) {
@@ -117,7 +117,7 @@ public class Alfil extends Pieza {
 				}
 			}
 
-			else if (this.color == Color.NEGRA && casillaDestino.getPieza().getColor()==Color.BLANCA){
+			else if (this.getColor() == Color.NEGRA && casillaDestino.getPieza().getColor()==Color.BLANCA){
 				// Abajo a la derecha
 				if (pCoordenadaInicio.getFila() < pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() < pCoordenadaDestino.getColumna()) {
 					if((pCoordenadaDestino.getFila() - pCoordenadaInicio.getFila())==(pCoordenadaDestino.getColumna()-pCoordenadaInicio.getColumna())) {

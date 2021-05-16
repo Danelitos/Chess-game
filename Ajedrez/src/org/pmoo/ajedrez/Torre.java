@@ -4,14 +4,14 @@ public class Torre extends Pieza {
 
 	private final String TORRE_NEGRA = "\u265C";
 	private final String TORRE_BLANCA = "\u2656";
-
+	
 	// Constructor
 	public Torre(Color pColor) {
 		super(pColor);
-		if (super.color.equals(Color.NEGRA))
-			piezaAImprimir = TORRE_NEGRA;
+		if (pColor.equals(Color.NEGRA))
+			this.setPiezaAImprimir(TORRE_NEGRA);
 		else {
-			piezaAImprimir = TORRE_BLANCA;
+			this.setPiezaAImprimir(TORRE_BLANCA);
 		}
 	}
 
@@ -61,7 +61,7 @@ public class Torre extends Pieza {
 
 	public boolean puedeComer(Coordenada pCoordenadaInicio, Coordenada pCoordenadaDestino,Casilla casillaDestino) {
 		if (!(casillaDestino.getPieza() instanceof NoPieza)) {
-			if (this.color == Color.BLANCA && casillaDestino.getPieza().getColor() == Color.NEGRA) {
+			if (this.getColor() == Color.BLANCA && casillaDestino.getPieza().getColor() == Color.NEGRA) {
 				// Arriba
 				if (pCoordenadaInicio.getFila() > pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
 					for (int i = 1; i < pCoordenadaInicio.getFila()-pCoordenadaDestino.getFila(); i++) {
@@ -101,7 +101,7 @@ public class Torre extends Pieza {
 
 			}
 
-			else if (this.color == Color.NEGRA && casillaDestino.getPieza().getColor() == Color.BLANCA) {
+			else if (this.getColor() == Color.NEGRA && casillaDestino.getPieza().getColor() == Color.BLANCA) {
 				// Arriba
 				if (pCoordenadaInicio.getFila() > pCoordenadaDestino.getFila() && pCoordenadaInicio.getColumna() == pCoordenadaDestino.getColumna()) {
 					for (int i = 1; i < pCoordenadaInicio.getFila()-pCoordenadaDestino.getFila(); i++) {
